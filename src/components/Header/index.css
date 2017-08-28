@@ -1,0 +1,30 @@
+.app-header a {
+  color: #fff;
+}
+
+.app-header a:focus {
+  text-decoration: none;
+}
+
+.header-nav .ant-menu {
+  line-height: 4rem;
+}
+
+.header-nav__middle .ant-menu {
+  display: flex;
+  justify-content: center;
+}
+
+.header-nav__right .ant-menu {
+  float: right;
+}
+
+.header-nav__login {
+  float: right;
+  color: rgba(255, 255, 255, 0.67);
+  margin-top: -1px;
+}
+
+.header-nav__login a {
+  color: #fff;
+}
