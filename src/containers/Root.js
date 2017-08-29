@@ -40,7 +40,7 @@ class Root extends PureComponent {
     const { store, history } = this.props
     const { pages } = this.state
     const pagesRoutes = Object.keys(pages).map(id => (
-      <Route key={id} path={`/${pages[id].slug}`} component={() => <CommonPage pageId={id} />} />
+      pages[id].slug !== 'home' && <Route key={id} path={`/${pages[id].slug}`} component={() => <CommonPage pageId={id} />} />
     ))
 
     return (
@@ -51,6 +51,7 @@ class Root extends PureComponent {
             <Header />
             <Content>
               <Route exact path="/" component={Home} />
+              <Route path="/home" component={Home} />
               {pagesRoutes}
             </Content>
             <Footer>

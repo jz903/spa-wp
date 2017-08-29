@@ -6,6 +6,7 @@ import { message } from 'antd'
 const entities = (state = {
   pages: {},
   posts: {},
+  media: {},
 }, action) => {
   if (action.response && action.response.entities) {
     return {

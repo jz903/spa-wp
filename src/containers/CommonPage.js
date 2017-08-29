@@ -2,10 +2,11 @@ import { connect } from 'react-redux'
 
 import CommonPage from '../components/CommonPage'
 import { fetchMedia } from '../actions/media'
-import { getCurrentPage } from '../selectors'
+import { getPageDetail, getFeaturedMedia } from '../selectors'
 
 const mapStateToProps = (state, ownprops) => ({
-  page: getCurrentPage(state, ownprops),
+  page: getPageDetail(state, ownprops),
+  featuredMedia: getFeaturedMedia(state, ownprops),
 })
 
 const mapDispatchToProps = dispatch => ({
