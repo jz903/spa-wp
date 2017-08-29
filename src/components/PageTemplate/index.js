@@ -5,9 +5,7 @@ class PageTemplate extends PureComponent {
   static propTypes = {
     pageId: number.isRequired,
     page: object.isRequired,
-    featuredMedia: object.isRequired,
     fetchPage: func.isRequired,
-    fetchMedia: func.isRequired,
   }
 
   componentDidMount() {
@@ -16,19 +14,10 @@ class PageTemplate extends PureComponent {
     fetchPage(pageId)
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { fetchMedia, page: { featuredMedia } } = this.props
-    const { page: { featuredMedia: newFeaturedMedia } } = nextProps
-
-    if (newFeaturedMedia && newFeaturedMedia !== featuredMedia) {
-      fetchMedia(newFeaturedMedia)
-    }
-  }
-
   render() {
-    const { page, featuredMedia } = this.props
-    const { title, content } = page
-    const { sourceUrl, altText } = featuredMedia
+    const { page } = this.props
+    const { title, content, betterFeaturedImage } = page
+    const { sourceUrl, altText } = betterFeaturedImage || {}
 
     return (
       <div className="page page-template">
