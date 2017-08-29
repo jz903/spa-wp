@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { object } from 'prop-types'
+import { array, object } from 'prop-types'
 import { Provider } from 'react-redux'
 import { Route } from 'react-router'
 import { ConnectedRouter } from 'react-router-redux'
@@ -13,6 +13,32 @@ import { fetchMenu } from '../actions/menu'
 import { PRIMARY_MENU_ID } from '../constants/menu'
 
 const { Content, Footer } = Layout
+
+const PagesRoutes = ({
+  primaryMenu,
+}) => {
+  if (primaryMenu.length > 0) {
+    return (
+      <div>
+        {primaryMenu.map(item => (
+          item.objectSlug === 'home' ?
+            (
+              <div key={item.objectId}>
+                <Route exact path="/" component={() => <Home pageId={item.objectId} />} />
+                <Route path={`/${item.objectSlug}`} component={() => <Home pageId={item.objectId} />} />
+              </div>
+            ) : <Route key={item.objectId} path={`/${item.objectSlug}`} component={() => <PageTemplate pageId={item.objectId} />} />
+        ))}
+      </div>
+    )
+  }
+
+  return <Route exact path="/" component={Home} />
+}
+
+PagesRoutes.propTypes = {
+  primaryMenu: array.isRequired,
+}
 
 class Root extends PureComponent {
   static propTypes = {
@@ -40,10 +66,6 @@ class Root extends PureComponent {
   render() {
     const { store, history } = this.props
     const { primaryMenu } = this.state
-    const pagesRoutes = primaryMenu.length > 0 && primaryMenu.map(item => (
-      item.objectSlug !== 'home' &&
-      <Route key={item.objectId} path={`/${item.objectSlug}`} component={() => <PageTemplate pageId={item.objectId} />} />
-    ))
 
     return (
       <Provider store={store}>
@@ -52,9 +74,7 @@ class Root extends PureComponent {
           <Layout className="layout">
             <Header menuId={PRIMARY_MENU_ID} />
             <Content>
-              <Route exact path="/" component={Home} />
-              <Route path="/home" component={Home} />
-              {pagesRoutes}
+              <PagesRoutes primaryMenu={primaryMenu} />
             </Content>
             <Footer>
               Wordpress Single Page App ©2017 Chris Zhou
