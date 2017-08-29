@@ -6,7 +6,7 @@ import * as actionTypes from '../constants/actionTypes'
 // Relies on the custom API middleware defined in ../middleware/api.js.
 export const fetchAllMedia = () => ({
   [CALL_API]: {
-    type: actionTypes.FETCH_MEDIA,
+    type: actionTypes.FETCH_ALL_MEDIA,
     endpoint: '/media',
     schema: Schemas.MEDIA_ARRAY,
   },
@@ -17,6 +17,5 @@ export const fetchMedia = id => ({
     type: actionTypes.FETCH_MEDIA,
     endpoint: `/media/${id}`,
     schema: Schemas.MEDIA,
-    id,
   },
 })

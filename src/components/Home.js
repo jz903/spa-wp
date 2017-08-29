@@ -7,13 +7,13 @@ import logo from '../assets/images/logo.svg'
 class Home extends PureComponent {
   static propTypes = {
     posts: object.isRequired,
-    fetchPosts: func.isRequired,
+    fetchAllPosts: func.isRequired,
   }
 
   componentDidMount() {
-    const { fetchPosts } = this.props
+    const { fetchAllPosts } = this.props
 
-    fetchPosts()
+    fetchAllPosts()
   }
 
   render() {

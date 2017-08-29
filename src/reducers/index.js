@@ -4,6 +4,7 @@ import { message } from 'antd'
 
 // Updates an entity cache in response to any action with response.entities.
 const entities = (state = {
+  menus: {},
   pages: {},
   posts: {},
   media: {},

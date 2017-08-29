@@ -8,8 +8,9 @@ import { Layout } from 'antd'
 import Header from './Header'
 import Loading from './Loading'
 import Home from './HomePage'
-import CommonPage from './CommonPage'
-import { fetchPages } from '../actions/page'
+import PageTemplate from './PageTemplate'
+import { fetchMenu } from '../actions/menu'
+import { PRIMARY_MENU_ID } from '../constants/menu'
 
 const { Content, Footer } = Layout
 
@@ -19,28 +20,19 @@ class Root extends PureComponent {
     history: object.isRequired,
   }
 
-  state = {
-    pages: [],
-  }
-
   componentDidMount() {
     const { store } = this.props
 
-    store.dispatch(fetchPages())
-      .then(({ response }) => {
-        if (response) {
-          this.setState({
-            pages: response.entities.pages,
-          })
-        }
-      })
+    store.dispatch(fetchMenu(PRIMARY_MENU_ID))
   }
 
   render() {
     const { store, history } = this.props
-    const { pages } = this.state
-    const pagesRoutes = Object.keys(pages).map(id => (
-      pages[id].slug !== 'home' && <Route key={id} path={`/${pages[id].slug}`} component={() => <CommonPage pageId={id} />} />
+    const menus = store.getState().entities.menus
+    const primaryMenu = (menus[PRIMARY_MENU_ID] && menus[PRIMARY_MENU_ID].items) || []
+    const pagesRoutes = primaryMenu.length > 0 && primaryMenu.map(item => (
+      item.objectSlug !== 'home' &&
+      <Route key={item.objectId} path={`/${item.objectSlug}`} component={() => <PageTemplate pageId={item.objectId} />} />
     ))
 
     return (
@@ -48,7 +40,7 @@ class Root extends PureComponent {
         {/* ConnectedRouter will use the store from Provider automatically */}
         <ConnectedRouter history={history}>
           <Layout className="layout">
-            <Header />
+            <Header menuId={PRIMARY_MENU_ID} />
             <Content>
               <Route exact path="/" component={Home} />
               <Route path="/home" component={Home} />

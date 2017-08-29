@@ -1,9 +1,10 @@
 import { connect } from 'react-redux'
 
 import Header from '../components/Header'
+import { getMenuDetail } from '../selectors'
 
-const mapStateToProps = state => ({
-  pages: state.entities.pages,
+const mapStateToProps = (state, ownProps) => ({
+  menu: getMenuDetail(state, ownProps),
   router: state.router,
 })
 

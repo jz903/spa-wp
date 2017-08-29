@@ -1,11 +1,22 @@
 import { createSelector } from 'reselect'
 
+const menuId = (state, ownProps) => ownProps.menuId
+const menusSelector = state => state.entities.menus
+
+export const getMenuDetail = createSelector(
+  menuId,
+  menusSelector,
+  (id, menus) => ({
+    ...menus[id],
+  }),
+)
+
 const pageId = (state, ownProps) => ownProps.pageId
-const pageSelector = state => state.entities.pages
+const pagesSelector = state => state.entities.pages
 
 export const getPageDetail = createSelector(
   pageId,
-  pageSelector,
+  pagesSelector,
   (id, pages) => ({
     ...pages[id],
   }),
@@ -13,8 +24,8 @@ export const getPageDetail = createSelector(
 
 const featuredMediaId = createSelector(
   pageId,
-  pageSelector,
-  (id, pages) => pages[id].featuredMedia,
+  pagesSelector,
+  (id, pages) => pages[id] && pages[id].featuredMedia,
 )
 const mediaSelector = state => state.entities.media
 

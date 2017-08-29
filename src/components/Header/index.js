@@ -9,12 +9,13 @@ const { Header } = Layout
 
 class HeaderComp extends PureComponent {
   static propTypes = {
-    pages: object.isRequired,
+    menu: object.isRequired,
     router: object.isRequired,
   }
 
   render() {
-    const { pages, router } = this.props
+    const { menu, router } = this.props
+    const menuItems = menu.items || []
     const selectedKeys = [router.location.pathname.split('/')[1]]
 
     return (
@@ -32,9 +33,9 @@ class HeaderComp extends PureComponent {
               selectedKeys={selectedKeys}
               onSelect={this.handleFilterChange}
             >
-              {Object.keys(pages).length > 0 && Object.keys(pages).map(id => (
-                <Menu.Item key={pages[id].slug}>
-                  <Link to={`/${pages[id].slug}`}>{pages[id].title.rendered}</Link>
+              {menuItems.length > 0 && menuItems.map(item => (
+                <Menu.Item key={item.objectSlug}>
+                  <Link to={`/${item.objectSlug}`}>{item.title}</Link>
                 </Menu.Item>
               ))}
             </Menu>
