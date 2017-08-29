@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react'
 import { number, object, func } from 'prop-types'
 
-import './Home.css'
-import logo from '../assets/images/logo.svg'
+import './index.css'
+import logo from '../../assets/images/logo.svg'
 
 class Home extends PureComponent {
   static propTypes = {

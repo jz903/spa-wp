@@ -9,6 +9,7 @@ import Header from './Header'
 import Loading from './Loading'
 import Home from './HomePage'
 import PageTemplate from './PageTemplate'
+import { fetchSiteInfo } from '../actions/site'
 import { fetchMenu } from '../actions/menu'
 import { PRIMARY_MENU_ID } from '../constants/menu'
 
@@ -53,6 +54,7 @@ class Root extends PureComponent {
   componentDidMount() {
     const { store } = this.props
 
+    store.dispatch(fetchSiteInfo())
     store.dispatch(fetchMenu(PRIMARY_MENU_ID))
       .then(({ response }) => {
         if (response) {

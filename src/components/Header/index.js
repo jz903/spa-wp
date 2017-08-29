@@ -9,12 +9,13 @@ const { Header } = Layout
 
 class HeaderComp extends PureComponent {
   static propTypes = {
+    site: object.isRequired,
     menu: object.isRequired,
     router: object.isRequired,
   }
 
   render() {
-    const { menu, router } = this.props
+    const { site, menu, router } = this.props
     const menuItems = menu.items || []
     const selectedKeys = [router.location.pathname.split('/')[1]]
 
@@ -23,7 +24,7 @@ class HeaderComp extends PureComponent {
         <Row gutter={16}>
           <Col className="gutter-row" span={8}>
             <h1 className="header-title">
-              <Link to="/">WP SPA</Link>
+              <Link to="/">{site.name}</Link>
             </h1>
           </Col>
           <Col className="gutter-row header-nav header-nav__right" span={16}>

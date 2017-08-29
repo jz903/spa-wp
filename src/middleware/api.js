@@ -1,7 +1,7 @@
 import { normalize } from 'normalizr'
 import { camelizeKeys } from 'humps'
 
-import { API_URL, MENU_API_URL } from '../constants/urls'
+import { API_URL } from '../constants/urls'
 
 const defaultHTTPHeaders = {
   Accept: 'application/json',
@@ -10,8 +10,7 @@ const defaultHTTPHeaders = {
 // Fetches an API response.
 // This makes every API response have the same shape, regardless of how nested it was.
 const callApi = ({ endpoint, method, payload }, schema) => {
-  const apiUrl = endpoint.indexOf('menu') > -1 ? MENU_API_URL : API_URL
-  const url = `${apiUrl}${endpoint}`
+  const url = `${API_URL}${endpoint}`
   const config = {
     headers: defaultHTTPHeaders,
     method: method || 'GET',

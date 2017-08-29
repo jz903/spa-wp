@@ -1,3 +1,6 @@
+// site
+export const FETCH_SITE_INFO = 'FETCH_SITE_INFO'
+
 // page
 export const FETCH_ALL_PAGES = 'FETCH_ALL_PAGES'
 export const FETCH_PAGE = 'FETCH_PAGE'
