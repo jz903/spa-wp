@@ -2,6 +2,7 @@ import { normalize } from 'normalizr'
 import { camelizeKeys } from 'humps'
 
 import { API_URL } from '../constants/urls'
+import { toQueryString } from '../utils'
 
 const defaultHTTPHeaders = {
   Accept: 'application/json',
@@ -9,8 +10,9 @@ const defaultHTTPHeaders = {
 }
 // Fetches an API response.
 // This makes every API response have the same shape, regardless of how nested it was.
-const callApi = ({ endpoint, method, payload }, schema) => {
-  const url = `${API_URL}${endpoint}`
+const callApi = ({ endpoint, method, payload, options = {} }, schema) => {
+  const query = toQueryString(options)
+  const url = `${API_URL}${endpoint}${query ? '?' : ''}${query}`
   const config = {
     headers: defaultHTTPHeaders,
     method: method || 'GET',

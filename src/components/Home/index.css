@@ -16,15 +16,19 @@
   font-size: large;
 }
 
-.add-vote {
-  margin-top: 1rem;
-}
-
-.App-votes {
-  margin-top: 2rem;
-}
-
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.ant-carousel .slick-slide {
+  text-align: center;
+  height: 160px;
+  line-height: 160px;
+  background: #364d79;
+  overflow: hidden;
+}
+
+.ant-carousel .slick-slide h3 {
+  color: #fff;
 }

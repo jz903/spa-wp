@@ -11,7 +11,7 @@ import Home from './HomePage'
 import PageTemplate from './PageTemplate'
 import { fetchSiteInfo } from '../actions/site'
 import { fetchMenu } from '../actions/menu'
-import { PRIMARY_MENU_ID } from '../constants/menu'
+import { PRIMARY_MENU_ID } from '../constants/site'
 
 const { Content, Footer } = Layout
 

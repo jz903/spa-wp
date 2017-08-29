@@ -1,23 +1,35 @@
 import React, { PureComponent } from 'react'
 import { number, object, func } from 'prop-types'
+import { Carousel } from 'antd'
 
+import { HOME_CAROUSEL_CATEGORY_ID } from '../../constants/site'
 import './index.css'
 import logo from '../../assets/images/logo.svg'
 
 class Home extends PureComponent {
   static propTypes = {
-    pageId: number.isRequired,
+    pageId: number,
     page: object.isRequired,
     posts: object.isRequired,
     fetchPage: func.isRequired,
     fetchAllPosts: func.isRequired,
+    fetchAllMedia: func.isRequired,
+  }
+
+  static defaultProps = {
+    pageId: 0,
   }
 
   componentDidMount() {
-    const { pageId, fetchPage, fetchAllPosts } = this.props
+    const { pageId, fetchPage, fetchAllPosts, fetchAllMedia } = this.props
 
-    fetchPage(pageId)
+    if (pageId) {
+      fetchPage(pageId)
+    }
     fetchAllPosts()
+    fetchAllMedia({
+      categories: HOME_CAROUSEL_CATEGORY_ID,
+    })
   }
 
   render() {
@@ -28,6 +40,12 @@ class Home extends PureComponent {
     return (
       <div className="App container">
         <div className="App-header">
+          <Carousel autoplay>
+            <div><h3>1</h3></div>
+            <div><h3>2</h3></div>
+            <div><h3>3</h3></div>
+            <div><h3>4</h3></div>
+          </Carousel>
           <img src={logo} className="App-logo" alt="logo" />
           <h2>
             Welcome to WP SPA

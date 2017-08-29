@@ -36,3 +36,15 @@ export const getFeaturedMedia = createSelector(
     ...media[id],
   }),
 )
+
+const categoryId = (state, id) => id
+
+export const filteredMediaByCategory = createSelector(
+  categoryId,
+  mediaSelector,
+  (id, media) => Object.keys(media).map(key =>
+    media[key].categories.indexOf(id) > -1 && {
+      ...media[key],
+    },
+  ),
+)

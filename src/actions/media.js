@@ -5,18 +5,20 @@ import { API_ROUTES } from '../constants/urls'
 
 // fetch user request
 // Relies on the custom API middleware defined in ../middleware/api.js.
-export const fetchAllMedia = () => ({
+export const fetchAllMedia = options => ({
   [CALL_API]: {
     type: actionTypes.FETCH_ALL_MEDIA,
     endpoint: `${API_ROUTES.basic}/media`,
     schema: Schemas.MEDIA_ARRAY,
+    options,
   },
 })
 
-export const fetchMedia = id => ({
+export const fetchMedia = (id, options) => ({
   [CALL_API]: {
     type: actionTypes.FETCH_MEDIA,
     endpoint: `${API_ROUTES.basic}/media/${id}`,
     schema: Schemas.MEDIA,
+    options,
   },
 })
