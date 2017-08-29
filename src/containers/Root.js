@@ -20,16 +20,26 @@ class Root extends PureComponent {
     history: object.isRequired,
   }
 
+  state = {
+    primaryMenu: [],
+  }
+
   componentDidMount() {
     const { store } = this.props
 
     store.dispatch(fetchMenu(PRIMARY_MENU_ID))
+      .then(({ response }) => {
+        if (response) {
+          this.setState({
+            primaryMenu: response.entities.menus[PRIMARY_MENU_ID].items,
+          })
+        }
+      })
   }
 
   render() {
     const { store, history } = this.props
-    const menus = store.getState().entities.menus
-    const primaryMenu = (menus[PRIMARY_MENU_ID] && menus[PRIMARY_MENU_ID].items) || []
+    const { primaryMenu } = this.state
     const pagesRoutes = primaryMenu.length > 0 && primaryMenu.map(item => (
       item.objectSlug !== 'home' &&
       <Route key={item.objectId} path={`/${item.objectSlug}`} component={() => <PageTemplate pageId={item.objectId} />} />
