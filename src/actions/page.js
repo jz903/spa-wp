@@ -2,23 +2,30 @@ import { CALL_API } from '../middleware/api'
 import { Schemas } from '../constants/entities'
 import * as actionTypes from '../constants/actionTypes'
 import { API_ROUTES } from '../constants/urls'
+import { DEFAULT_QUERY } from '../constants/site'
 
 // fetch user request
 // Relies on the custom API middleware defined in ../middleware/api.js.
-export const fetchPages = options => ({
+export const fetchPages = (options = {}) => ({
   [CALL_API]: {
     type: actionTypes.FETCH_PAGES,
     endpoint: `${API_ROUTES.basic}/pages`,
     schema: Schemas.PAGE_ARRAY,
-    options,
+    options: {
+      ...DEFAULT_QUERY.page,
+      ...options,
+    },
   },
 })
 
-export const fetchSinglePage = (id, options) => ({
+export const fetchSinglePage = (id, options = {}) => ({
   [CALL_API]: {
     type: actionTypes.FETCH_SINGLE_PAGE,
     endpoint: `${API_ROUTES.basic}/pages/${id}`,
     schema: Schemas.PAGE,
-    options,
+    options: {
+      ...DEFAULT_QUERY.page,
+      ...options,
+    },
   },
 })
