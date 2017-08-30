@@ -40,7 +40,7 @@ class Home extends PureComponent {
       <div className="home">
         <HomeCarousel carousel={homeCarouselMedia} site={site} />
         <div className="home-content container">
-          {Object.keys(pageSection).map(key => <HomeSection key={key} content={pageSection[key]} />)}
+          {Object.keys(pageSection).map(key => <HomeSection key={key} className={key} content={pageSection[key]} />)}
           <div>
             {isEmpty && 'There is no posts yet.'}
           </div>

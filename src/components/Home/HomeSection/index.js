@@ -1,19 +1,35 @@
 import React from 'react'
-import { object } from 'prop-types'
+import { string } from 'prop-types'
+import classNames from 'classnames'
 
 const HomeSection = ({
   content,
-}) => (
-  <section
-    className="section"
-    dangerouslySetInnerHTML={
-      { __html: content }
-    }
-  />
-)
+  className,
+}) => {
+  const sectionClass = classNames(
+    'section',
+    {
+      [className]: className,
+    },
+  )
+
+  return (
+    <section
+      className={sectionClass}
+      dangerouslySetInnerHTML={
+        { __html: content }
+      }
+    />
+  )
+}
 
 HomeSection.propTypes = {
-  content: object.isRequired,
+  className: string,
+  content: string.isRequired,
+}
+
+HomeSection.defaultProps = {
+  className: '',
 }
 
 export default HomeSection
