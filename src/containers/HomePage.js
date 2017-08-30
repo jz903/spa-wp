@@ -9,8 +9,9 @@ import { HOME_CAROUSEL_CATEGORY_ID } from '../constants/site'
 
 const mapStateToProps = (state, ownProps) => ({
   pageId: ownProps.pageId,
-  page: getPageDetail(state, ownProps),
+  site: state.site,
   posts: state.entities.posts,
+  page: getPageDetail(state, ownProps),
   homeCarouselMedia: filteredMediaByCategory(state, HOME_CAROUSEL_CATEGORY_ID),
 })
 

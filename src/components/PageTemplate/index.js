@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react'
 import { number, object, func } from 'prop-types'
 
+import './index.css'
+
 class PageTemplate extends PureComponent {
   static propTypes = {
     pageId: number.isRequired,

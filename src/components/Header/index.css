@@ -1,9 +1,21 @@
+.app-header.ant-layout-header {
+  width: 100%;
+  position: fixed;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, .8);
+}
+
 .app-header a {
   color: #fff;
 }
 
 .app-header a:focus {
   text-decoration: none;
+}
+
+.app-header .ant-menu-dark,
+.app-header .ant-menu-dark .ant-menu-sub {
+  background-color: transparent;
 }
 
 .header-nav .ant-menu {

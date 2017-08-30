@@ -1,0 +1,39 @@
+.ant-carousel {
+  margin-top: 64px;
+}
+
+.slick-track {
+  height: 80vh;
+}
+
+.slick-slide {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.slick-slide:before {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .3);
+}
+
+.slogan {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+  text-align: center;
+}
+
+.slogan h1,
+.slogan h3 {
+  color: #fff;
+}
