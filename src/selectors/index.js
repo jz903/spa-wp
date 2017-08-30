@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect'
+import { camelizeKeys } from 'humps'
 
 const menuId = (state, ownProps) => ownProps.menuId
 const menusSelector = state => state.entities.menus
@@ -11,7 +12,7 @@ export const getMenuDetail = createSelector(
   }),
 )
 
-const pageId = (state, ownProps) => ownProps.pageId
+const pageId = (state, id) => id
 const pagesSelector = state => state.entities.pages
 
 export const getPageDetail = createSelector(
@@ -47,4 +48,20 @@ export const filteredMediaByCategory = createSelector(
       ...media[key],
     },
   ),
+)
+
+export const getPageContentByCatId = createSelector(
+  categoryId,
+  pagesSelector,
+  (catId, pages) =>
+    camelizeKeys(
+      Object.keys(pages)
+        .filter(key => pages[key].categories.indexOf(catId) > -1)
+        .reduce((obj, id) => ({
+          ...obj,
+          [pages[id].slug]: {
+            ...pages[id],
+          },
+        }), {}),
+    ),
 )

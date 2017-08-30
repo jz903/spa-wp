@@ -2,18 +2,17 @@ import React, { PureComponent } from 'react'
 import { number, object, array, func } from 'prop-types'
 
 import HomeCarousel from './HomeCarousel'
-import { HOME_CAROUSEL_CATEGORY_ID } from '../../constants/site'
+import { HOME_CAROUSEL_CATEGORY_ID, HOME_CONTENT_CATEGORY_ID } from '../../constants/site'
 import './index.css'
 import logo from '../../assets/images/logo.svg'
 
 class Home extends PureComponent {
   static propTypes = {
-    pageId: number,
     site: object.isRequired,
-    page: object.isRequired,
+    content: object.isRequired,
     posts: object.isRequired,
     homeCarouselMedia: array.isRequired,
-    fetchSinglePage: func.isRequired,
+    fetchPages: func.isRequired,
     fetchPosts: func.isRequired,
     fetchMedia: func.isRequired,
   }
@@ -23,11 +22,11 @@ class Home extends PureComponent {
   }
 
   componentDidMount() {
-    const { pageId, fetchSinglePage, fetchPosts, fetchMedia } = this.props
+    const { fetchPages, fetchPosts, fetchMedia } = this.props
 
-    if (pageId) {
-      fetchSinglePage(pageId)
-    }
+    fetchPages({
+      categories: HOME_CONTENT_CATEGORY_ID,
+    })
     fetchPosts()
     fetchMedia({
       categories: HOME_CAROUSEL_CATEGORY_ID,
@@ -35,23 +34,28 @@ class Home extends PureComponent {
   }
 
   render() {
-    const { site, posts, page, homeCarouselMedia } = this.props
-    const { content } = page
+    const { site, posts, content, homeCarouselMedia } = this.props
+    const { home, faceIdentification } = content
     const isEmpty = Object.keys(posts).length === 0
 
     return (
       <div className="home">
         <HomeCarousel carousel={homeCarouselMedia} site={site} />
-        <div className="App container">
-          <div className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h2>
-              Welcome to WP SPA
-            </h2>
-            <div className="content" dangerouslySetInnerHTML={{ __html: content && content.rendered }} />
-            <div>
-              {isEmpty && 'There is no posts yet.'}
+        <div className="home-content container">
+          <section className="section face-identification" >
+            <div className="section__header">
+              <h2>{faceIdentification && faceIdentification.title.rendered}</h2>
             </div>
+            <div
+              className="section__body"
+              dangerouslySetInnerHTML={
+                { __html: faceIdentification && faceIdentification.content.rendered }
+              }
+            />
+          </section>
+          <div className="content" dangerouslySetInnerHTML={{ __html: home && home.content.rendered }} />
+          <div>
+            {isEmpty && 'There is no posts yet.'}
           </div>
         </div>
       </div>

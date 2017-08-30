@@ -6,7 +6,7 @@ import { getPageDetail } from '../selectors'
 
 const mapStateToProps = (state, ownprops) => ({
   pageId: ownprops.pageId,
-  page: getPageDetail(state, ownprops),
+  page: getPageDetail(state, ownprops.pageId),
 })
 
 const mapDispatchToProps = dispatch => ({
