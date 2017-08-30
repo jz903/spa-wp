@@ -5,18 +5,20 @@ import { API_ROUTES } from '../constants/urls'
 
 // fetch user request
 // Relies on the custom API middleware defined in ../middleware/api.js.
-export const fetchAllPages = () => ({
+export const fetchPages = options => ({
   [CALL_API]: {
-    type: actionTypes.FETCH_ALL_PAGES,
+    type: actionTypes.FETCH_PAGES,
     endpoint: `${API_ROUTES.basic}/pages`,
     schema: Schemas.PAGE_ARRAY,
+    options,
   },
 })
 
-export const fetchPage = id => ({
+export const fetchSinglePage = (id, options) => ({
   [CALL_API]: {
-    type: actionTypes.FETCH_PAGE,
+    type: actionTypes.FETCH_SINGLE_PAGE,
     endpoint: `${API_ROUTES.basic}/pages/${id}`,
     schema: Schemas.PAGE,
+    options,
   },
 })

@@ -7,13 +7,13 @@ class PageTemplate extends PureComponent {
   static propTypes = {
     pageId: number.isRequired,
     page: object.isRequired,
-    fetchPage: func.isRequired,
+    fetchSinglePage: func.isRequired,
   }
 
   componentDidMount() {
-    const { pageId, fetchPage } = this.props
+    const { pageId, fetchSinglePage } = this.props
 
-    fetchPage(pageId)
+    fetchSinglePage(pageId)
   }
 
   render() {

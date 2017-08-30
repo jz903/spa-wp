@@ -10,7 +10,7 @@ import Loading from './Loading'
 import Home from './HomePage'
 import PageTemplate from './PageTemplate'
 import { fetchSiteInfo } from '../actions/site'
-import { fetchMenu } from '../actions/menu'
+import { fetchSingleMenu } from '../actions/menu'
 import { PRIMARY_MENU_ID } from '../constants/site'
 
 const { Content, Footer } = Layout
@@ -55,7 +55,7 @@ class Root extends PureComponent {
     const { store } = this.props
 
     store.dispatch(fetchSiteInfo())
-    store.dispatch(fetchMenu(PRIMARY_MENU_ID))
+    store.dispatch(fetchSingleMenu(PRIMARY_MENU_ID))
       .then(({ response }) => {
         if (response) {
           this.setState({

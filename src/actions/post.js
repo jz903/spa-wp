@@ -5,18 +5,20 @@ import { API_ROUTES } from '../constants/urls'
 
 // fetch user request
 // Relies on the custom API middleware defined in ../middleware/api.js.
-export const fetchAllPosts = () => ({
+export const fetchPosts = options => ({
   [CALL_API]: {
-    type: actionTypes.FETCH_ALL_POSTS,
+    type: actionTypes.FETCH_POSTS,
     endpoint: `${API_ROUTES.basic}/posts`,
     schema: Schemas.POST_ARRAY,
+    options,
   },
 })
 
-export const fetchPost = id => ({
+export const fetchSinglePost = (id, options) => ({
   [CALL_API]: {
-    type: actionTypes.FETCH_POST,
+    type: actionTypes.FETCH_SINGLE_POST,
     endpoint: `${API_ROUTES.basic}/posts/${id}`,
     schema: Schemas.POST,
+    options,
   },
 })

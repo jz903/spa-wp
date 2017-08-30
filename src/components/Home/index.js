@@ -13,9 +13,9 @@ class Home extends PureComponent {
     page: object.isRequired,
     posts: object.isRequired,
     homeCarouselMedia: array.isRequired,
-    fetchPage: func.isRequired,
-    fetchAllPosts: func.isRequired,
-    fetchAllMedia: func.isRequired,
+    fetchSinglePage: func.isRequired,
+    fetchPosts: func.isRequired,
+    fetchMedia: func.isRequired,
   }
 
   static defaultProps = {
@@ -23,13 +23,13 @@ class Home extends PureComponent {
   }
 
   componentDidMount() {
-    const { pageId, fetchPage, fetchAllPosts, fetchAllMedia } = this.props
+    const { pageId, fetchSinglePage, fetchPosts, fetchMedia } = this.props
 
     if (pageId) {
-      fetchPage(pageId)
+      fetchSinglePage(pageId)
     }
-    fetchAllPosts()
-    fetchAllMedia({
+    fetchPosts()
+    fetchMedia({
       categories: HOME_CAROUSEL_CATEGORY_ID,
     })
   }

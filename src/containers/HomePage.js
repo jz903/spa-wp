@@ -1,9 +1,9 @@
 import { connect } from 'react-redux'
 
 import Home from '../components/Home'
-import { fetchPage } from '../actions/page'
-import { fetchAllPosts } from '../actions/post'
-import { fetchAllMedia } from '../actions/media'
+import { fetchSinglePage } from '../actions/page'
+import { fetchPosts } from '../actions/post'
+import { fetchMedia } from '../actions/media'
 import { getPageDetail, filteredMediaByCategory } from '../selectors'
 import { HOME_CAROUSEL_CATEGORY_ID } from '../constants/site'
 
@@ -16,14 +16,14 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchPage: id => {
-    dispatch(fetchPage(id))
+  fetchSinglePage: id => {
+    dispatch(fetchSinglePage(id))
   },
-  fetchAllPosts: () => {
-    dispatch(fetchAllPosts())
+  fetchPosts: () => {
+    dispatch(fetchPosts())
   },
-  fetchAllMedia: options => {
-    dispatch(fetchAllMedia(options))
+  fetchMedia: options => {
+    dispatch(fetchMedia(options))
   },
 })
 
