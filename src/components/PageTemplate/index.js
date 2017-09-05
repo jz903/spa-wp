@@ -25,7 +25,10 @@ class PageTemplate extends PureComponent {
       <div className="page page-template">
         <h1>{title && title.rendered}</h1>
         <img src={sourceUrl} alt={altText} />
-        <div className="content" dangerouslySetInnerHTML={{ __html: content && content.rendered }} />
+        <div
+          className="content"
+          dangerouslySetInnerHTML={{ __html: content && content.rendered }} // eslint-disable-line
+        />
       </div>
     )
   }

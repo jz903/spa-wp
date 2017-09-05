@@ -3,19 +3,16 @@ import { number, object, array, func } from 'prop-types'
 
 import HomeCarousel from './HomeCarousel'
 import HomeSection from './HomeSection'
-import { HOME_CAROUSEL_CATEGORY_ID } from '../../constants/site'
 import './index.css'
 
 class Home extends PureComponent {
   static propTypes = {
     pageId: number,
-    site: object.isRequired,
     pageSection: object.isRequired,
     posts: object.isRequired,
-    homeCarouselMedia: array.isRequired,
+    homeCarousel: array.isRequired,
     fetchSinglePage: func.isRequired,
     fetchPosts: func.isRequired,
-    fetchMedia: func.isRequired,
   }
 
   static defaultProps = {
@@ -23,24 +20,26 @@ class Home extends PureComponent {
   }
 
   componentDidMount() {
-    const { pageId, fetchSinglePage, fetchPosts, fetchMedia } = this.props
+    const { pageId, fetchSinglePage, fetchPosts } = this.props
 
-    fetchSinglePage(pageId)
+    if (pageId) {
+      fetchSinglePage(pageId)
+    }
     fetchPosts()
-    fetchMedia({
-      categories: HOME_CAROUSEL_CATEGORY_ID,
-    })
   }
 
   render() {
-    const { site, posts, pageSection, homeCarouselMedia } = this.props
+    const { posts, pageSection, homeCarousel } = this.props
     const isEmpty = Object.keys(posts).length === 0
 
     return (
       <div className="home">
-        <HomeCarousel carousel={homeCarouselMedia} site={site} />
+        <HomeCarousel carousel={homeCarousel} />
         <div className="home-content container">
-          {Object.keys(pageSection).map(key => <HomeSection key={key} className={key} content={pageSection[key]} />)}
+          {
+            Object.keys(pageSection).map(key =>
+              <HomeSection key={key} className={key} content={pageSection[key]} />)
+          }
           <div>
             {isEmpty && 'There is no posts yet.'}
           </div>

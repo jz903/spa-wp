@@ -11,18 +11,18 @@
   color: #797979;
 }
 
-.pageSection01 h3 {
+.homeSection01 h3 {
   font-weight: 200;
 }
 
-.pageSection01 ul {
+.homeSection01 ul {
   margin-top: 1rem;
   display: flex;
   justify-content: space-around;
   flex-flow: row wrap;
 }
 
-.pageSection01 li {
+.homeSection01 li {
   flex: 0 0 auto;
   max-width: 30%;
 }

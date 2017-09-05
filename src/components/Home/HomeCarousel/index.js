@@ -1,11 +1,10 @@
 import React from 'react'
-import { array, object } from 'prop-types'
+import { array } from 'prop-types'
 import { Carousel } from 'antd'
 
 import './index.css'
 
 const HomeCarousel = ({
-  site,
   carousel,
 }) => (
   carousel.length > 0 &&
@@ -14,11 +13,14 @@ const HomeCarousel = ({
     autoplay
     autoplaySpeed="5000"
   >
-    {carousel.map(media => (
-      <div key={media.id} style={{ backgroundImage: `url(${media.sourceUrl})` }}>
+    {carousel.map((media, index) => (
+      <div
+        key={index} // eslint-disable-line
+        style={{ backgroundImage: `url(${media.url})` }}
+      >
         <div className="slogan">
-          <h1>{site.name}</h1>
-          <h3>{site.description}</h3>
+          {media.title && <h1>{media.title}</h1>}
+          {media.description && <h3>{media.description}</h3>}
         </div>
       </div>
     ))}
@@ -26,7 +28,6 @@ const HomeCarousel = ({
 )
 
 HomeCarousel.propTypes = {
-  site: object.isRequired,
   carousel: array.isRequired,
 }
 
