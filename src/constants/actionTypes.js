@@ -14,5 +14,4 @@ export const FETCH_MEDIA = 'FETCH_MEDIA'
 export const FETCH_SINGLE_MEDIA = 'FETCH_SINGLE_MEDIA'
 
 // menu
-export const FETCH_MENUS = 'FETCH_MENUS'
-export const FETCH_SINGLE_MENU = 'FETCH_SINGLE_MENU'
+export const FETCH_TOP_MENU = 'FETCH_TOP_MENU'

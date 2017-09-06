@@ -2,11 +2,10 @@ import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
 import { message } from 'antd'
 
-import { FETCH_SITE_INFO } from '../constants/actionTypes'
+import { FETCH_SITE_INFO, FETCH_TOP_MENU } from '../constants/actionTypes'
 
 // Updates an entity cache in response to any action with response.entities.
 const entities = (state = {
-  menus: {},
   pages: {},
   posts: {},
   media: {},
@@ -22,7 +21,9 @@ const entities = (state = {
 }
 
 const site = (
-  state = {},
+  state = {
+    topMenu: [],
+  },
   { type, response = {} },
 ) => {
   const { name, description, url, home } = response
@@ -35,6 +36,11 @@ const site = (
         description,
         url,
         home,
+      }
+    case `${FETCH_TOP_MENU}_SUCCESS`:
+      return {
+        ...state,
+        topMenu: response,
       }
     default:
       return state

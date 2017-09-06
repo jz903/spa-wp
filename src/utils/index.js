@@ -4,6 +4,4 @@ export const toQueryString = paramsObj =>
     .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(paramsObj[key])}`)
     .join('&')
 
-export default {
-  toQueryString,
-}
+export const getSlugFromUrl = url => url.match(/[^/]*(?=(\/)?$)/)[0]

@@ -3,6 +3,7 @@ import { object } from 'prop-types'
 import { Link } from 'react-router-dom'
 import { Row, Col, Layout, Menu } from 'antd'
 
+import { getSlugFromUrl } from '../../utils'
 import './index.css'
 
 const { Header } = Layout
@@ -10,13 +11,12 @@ const { Header } = Layout
 class HeaderComp extends PureComponent {
   static propTypes = {
     site: object.isRequired,
-    menu: object.isRequired,
     router: object.isRequired,
   }
 
   render() {
-    const { site, menu, router } = this.props
-    const menuItems = menu.items || []
+    const { site, router } = this.props
+    const { topMenu } = site
     const selectedKeys = [router.location.pathname.split('/')[1]]
 
     return (
@@ -34,9 +34,9 @@ class HeaderComp extends PureComponent {
               selectedKeys={selectedKeys}
               onSelect={this.handleFilterChange}
             >
-              {menuItems.length > 0 && menuItems.map(item => (
-                <Menu.Item key={item.objectSlug}>
-                  <Link to={`/${item.objectSlug}`}>{item.title}</Link>
+              {topMenu.length > 0 && topMenu.map(menu => (
+                <Menu.Item key={menu.id}>
+                  <Link to={`/${getSlugFromUrl(menu.url)}`}>{menu.title}</Link>
                 </Menu.Item>
               ))}
             </Menu>

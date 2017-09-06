@@ -10,27 +10,29 @@ import Loading from './Loading'
 import Home from './HomePage'
 import PageTemplate from './PageTemplate'
 import { fetchSiteInfo } from '../actions/site'
-import { fetchSingleMenu } from '../actions/menu'
-import { PRIMARY_MENU_ID } from '../constants/site'
+import { fetchTopMenu } from '../actions/menu'
+import { getSlugFromUrl } from '../utils'
 
 
 const { Content, Footer } = Layout
 
 const PagesRoutes = ({
-  primaryMenu,
+  topMenu,
 }) => {
-  if (primaryMenu.length > 0) {
+  if (topMenu.length > 0) {
     return (
       <div>
-        {primaryMenu.map(item => (
-          item.objectSlug === 'home' ?
+        {topMenu.map(menu => {
+          const slug = getSlugFromUrl(menu.url)
+
+          return slug === 'home' ?
             (
-              <div key={item.objectId}>
-                <Route exact path="/" component={() => <Home pageId={item.objectId} />} />
-                <Route path={`/${item.objectSlug}`} component={() => <Home pageId={item.objectId} />} />
+              <div key={menu.objectId}>
+                <Route exact path="/" component={() => <Home pageId={menu.objectId} />} />
+                <Route path={`/${slug}`} component={() => <Home pageId={menu.objectId} />} />
               </div>
-            ) : <Route key={item.objectId} path={`/${item.objectSlug}`} component={() => <PageTemplate pageId={item.objectId} />} />
-        ))}
+            ) : <Route key={menu.objectId} path={`/${slug}`} component={() => <PageTemplate pageId={menu.objectId} />} />
+        })}
       </div>
     )
   }
@@ -39,7 +41,7 @@ const PagesRoutes = ({
 }
 
 PagesRoutes.propTypes = {
-  primaryMenu: array.isRequired,
+  topMenu: array.isRequired,
 }
 
 class Root extends PureComponent {
@@ -49,18 +51,18 @@ class Root extends PureComponent {
   }
 
   state = {
-    primaryMenu: [],
+    topMenu: [],
   }
 
   componentDidMount() {
     const { store } = this.props
 
     store.dispatch(fetchSiteInfo())
-    store.dispatch(fetchSingleMenu(PRIMARY_MENU_ID))
+    store.dispatch(fetchTopMenu())
       .then(({ response }) => {
         if (response) {
           this.setState({
-            primaryMenu: response.entities.menus[PRIMARY_MENU_ID].items,
+            topMenu: response,
           })
         }
       })
@@ -68,16 +70,16 @@ class Root extends PureComponent {
 
   render() {
     const { store, history } = this.props
-    const { primaryMenu } = this.state
+    const { topMenu } = this.state
 
     return (
       <Provider store={store}>
         {/* ConnectedRouter will use the store from Provider automatically */}
         <ConnectedRouter history={history}>
           <Layout className="layout">
-            <Header menuId={PRIMARY_MENU_ID} />
+            <Header />
             <Content>
-              <PagesRoutes primaryMenu={primaryMenu} />
+              <PagesRoutes topMenu={topMenu} />
             </Content>
             <Footer>
               Wordpress Single Page App ©2017 Chris Zhou

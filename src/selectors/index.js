@@ -1,16 +1,5 @@
 import { createSelector } from 'reselect'
 
-const menuId = (state, ownProps) => ownProps.menuId
-const menusSelector = state => state.entities.menus
-
-export const getMenuDetail = createSelector(
-  menuId,
-  menusSelector,
-  (id, menus) => ({
-    ...menus[id],
-  }),
-)
-
 const pageId = (state, id) => id
 const pagesSelector = state => state.entities.pages
 
