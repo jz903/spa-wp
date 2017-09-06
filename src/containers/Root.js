@@ -13,6 +13,7 @@ import { fetchSiteInfo } from '../actions/site'
 import { fetchSingleMenu } from '../actions/menu'
 import { PRIMARY_MENU_ID } from '../constants/site'
 
+
 const { Content, Footer } = Layout
 
 const PagesRoutes = ({

@@ -1,16 +1,16 @@
 import React, { PureComponent } from 'react'
 import { number, object, array, func } from 'prop-types'
 
-import HomeCarousel from './HomeCarousel'
-import HomeSection from './HomeSection'
+import CarouselTemplate from '../CarouselTemplate'
+import SectionTemplate from '../SectionTemplate'
 import './index.css'
 
 class Home extends PureComponent {
   static propTypes = {
     pageId: number,
-    pageSection: object.isRequired,
     posts: object.isRequired,
     homeCarousel: array.isRequired,
+    pageSection: array.isRequired,
     fetchSinglePage: func.isRequired,
     fetchPosts: func.isRequired,
   }
@@ -34,11 +34,16 @@ class Home extends PureComponent {
 
     return (
       <div className="home">
-        <HomeCarousel carousel={homeCarousel} />
-        <div className="home-content container">
+        <CarouselTemplate carousel={homeCarousel} />
+        <div className="home-content">
           {
-            Object.keys(pageSection).map(key =>
-              <HomeSection key={key} className={key} content={pageSection[key]} />)
+            pageSection.map((section, index) =>
+              (<SectionTemplate
+                key={index} // eslint-disable-line
+                className={`section_${index + 1}`}
+                section={section}
+              />),
+            )
           }
           <div>
             {isEmpty && 'There is no posts yet.'}

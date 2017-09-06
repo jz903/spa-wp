@@ -60,11 +60,15 @@ export const getPageSection = createSelector(
   pageId,
   getPageAcf,
   (id, acf) => Object.keys(acf)
-    .filter(key => key.indexOf('Section') > -1)
-    .reduce((obj, key) => ({
-      ...obj,
-      [key]: acf[key],
-    }), {}),
+    .filter(key => key.indexOf('SectionContent') > -1)
+    .map(key => {
+      const bgKey = key.replace('SectionContent', 'SectionBg')
+
+      return {
+        content: acf[key],
+        bg: acf[bgKey] ? acf[bgKey].url : '',
+      }
+    }),
 )
 
 export const getPageCarousel = createSelector(

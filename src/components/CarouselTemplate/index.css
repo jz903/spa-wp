@@ -9,7 +9,7 @@
 .slick-slide {
   position: relative;
   background-size: cover;
-  background-position: center;
+  background-position: 50% 50%;
   overflow: hidden;
 }
 

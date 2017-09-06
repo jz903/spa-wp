@@ -1,0 +1,58 @@
+.section ul {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-around;
+  flex-flow: row wrap;
+}
+
+.section li {
+  flex: 0 0 auto;
+}
+
+.section.banner {
+  padding: 5rem 0;
+  color: #fff;
+}
+
+.section.banner h1,
+.section.banner h2,
+.section.banner h3,
+.section.banner h4,
+.section.banner h5,
+.section.banner h6 {
+  color: #fff;
+}
+
+.section.banner {
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.section.banner:before {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .3);
+}
+
+.section.banner p {
+  opacity: .7;
+}
+
+.section.banner ul {
+  margin-top: 3rem;
+}
+
+.home .section_1 li {
+  max-width: 30%;
+}
+
+.home .section_2 li {
+  max-width: 25%;
+}

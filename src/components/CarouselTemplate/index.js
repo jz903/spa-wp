@@ -4,7 +4,7 @@ import { Carousel } from 'antd'
 
 import './index.css'
 
-const HomeCarousel = ({
+const CarouselTemplate = ({
   carousel,
 }) => (
   carousel.length > 0 &&
@@ -27,8 +27,8 @@ const HomeCarousel = ({
   </Carousel>
 )
 
-HomeCarousel.propTypes = {
+CarouselTemplate.propTypes = {
   carousel: array.isRequired,
 }
 
-export default HomeCarousel
+export default CarouselTemplate
