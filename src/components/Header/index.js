@@ -23,11 +23,11 @@ class HeaderComp extends PureComponent {
       <Header className="app-header">
         <Row gutter={16}>
           <Col className="gutter-row" span={8}>
-            <h1 className="header-title">
+            <h1 className="app-header__title">
               <Link to="/">{site.name}</Link>
             </h1>
           </Col>
-          <Col className="gutter-row header-nav header-nav__right" span={16}>
+          <Col className="gutter-row app-header__nav app-header__right" span={16}>
             <Menu
               theme="dark"
               mode="horizontal"

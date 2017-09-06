@@ -1,19 +1,19 @@
-.ant-carousel {
+.home-carousel .ant-carousel {
   margin-top: 64px;
 }
 
-.slick-track {
+.home-carousel .slick-track {
   height: 80vh;
 }
 
-.slick-slide {
+.home-carousel .slick-slide {
   position: relative;
   background-size: cover;
   background-position: 50% 50%;
   overflow: hidden;
 }
 
-.slick-slide:before {
+.home-carousel .slick-slide:before {
   display: block;
   content: '';
   position: absolute;
@@ -24,7 +24,7 @@
   background-color: rgba(0, 0, 0, .3);
 }
 
-.slogan {
+.home-carousel__slogan {
   width: 100%;
   position: absolute;
   left: 0;
@@ -33,7 +33,7 @@
   text-align: center;
 }
 
-.slogan h1,
-.slogan h3 {
+.home-carousel__slogan h1,
+.home-carousel__slogan h3 {
   color: #fff;
 }

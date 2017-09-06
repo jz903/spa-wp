@@ -1,36 +1,46 @@
-.section ul {
+.app-section {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.app-section h4 {
+  font-weight: 200;
+  color: #797979;
+}
+
+.app-section ul {
   margin-top: 1rem;
   display: flex;
   justify-content: space-around;
   flex-flow: row wrap;
 }
 
-.section li {
+.app-section li {
   flex: 0 0 auto;
 }
 
-.section.banner {
+.app-section.app-banner {
   padding: 5rem 0;
   color: #fff;
 }
 
-.section.banner h1,
-.section.banner h2,
-.section.banner h3,
-.section.banner h4,
-.section.banner h5,
-.section.banner h6 {
+.app-section.app-banner h1,
+.app-section.app-banner h2,
+.app-section.app-banner h3,
+.app-section.app-banner h4,
+.app-section.app-banner h5,
+.app-section.app-banner h6 {
   color: #fff;
 }
 
-.section.banner {
+.app-section.app-banner {
   position: relative;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 50%;
 }
 
-.section.banner:before {
+.app-section.app-banner:before {
   display: block;
   content: '';
   position: absolute;
@@ -41,18 +51,10 @@
   background-color: rgba(0, 0, 0, .3);
 }
 
-.section.banner p {
+.app-section.app-banner p {
   opacity: .7;
 }
 
-.section.banner ul {
+.app-section.app-banner ul {
   margin-top: 3rem;
-}
-
-.home .section_1 li {
-  max-width: 30%;
-}
-
-.home .section_2 li {
-  max-width: 25%;
 }

@@ -22,11 +22,11 @@ class PageTemplate extends PureComponent {
     const { sourceUrl, altText } = betterFeaturedImage || {}
 
     return (
-      <div className="page page-template">
+      <div className="app-page">
         <h1>{title && title.rendered}</h1>
         <img src={sourceUrl} alt={altText} />
         <div
-          className="content"
+          className="app-page__content"
           dangerouslySetInnerHTML={{ __html: content && content.rendered }} // eslint-disable-line
         />
       </div>

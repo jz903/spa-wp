@@ -1,3 +1,11 @@
-.home {
+.app-home {
   text-align: center;
+}
+
+.app-home .app-section_1 li {
+  max-width: 30%;
+}
+
+.app-home .app-section_2 li {
+  max-width: 25%;
 }

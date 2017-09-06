@@ -18,25 +18,25 @@
   background-color: transparent;
 }
 
-.header-nav .ant-menu {
+.app-header .ant-menu {
   line-height: 4rem;
 }
 
-.header-nav__middle .ant-menu {
+.app-header__middle .ant-menu {
   display: flex;
   justify-content: center;
 }
 
-.header-nav__right .ant-menu {
+.app-header__right .ant-menu {
   float: right;
 }
 
-.header-nav__login {
+.app-header__login {
   float: right;
   color: rgba(255, 255, 255, 0.67);
   margin-top: -1px;
 }
 
-.header-nav__login a {
+.app-header__login a {
   color: #fff;
 }

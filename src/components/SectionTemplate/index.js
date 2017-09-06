@@ -11,9 +11,9 @@ const SectionTemplate = ({
   const { content, bg } = section
   const isBg = !!bg
   const sectionClass = classNames(
-    'section',
+    'app-section',
     {
-      banner: isBg,
+      'app-banner': isBg,
       [className]: className,
     },
   )

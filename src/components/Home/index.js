@@ -33,14 +33,14 @@ class Home extends PureComponent {
     const isEmpty = Object.keys(posts).length === 0
 
     return (
-      <div className="home">
+      <div className="app-home">
         <CarouselTemplate carousel={homeCarousel} />
-        <div className="home-content">
+        <div className="app-home__content">
           {
             pageSection.map((section, index) =>
               (<SectionTemplate
                 key={index} // eslint-disable-line
-                className={`section_${index + 1}`}
+                className={`app-section_${index + 1}`}
                 section={section}
               />),
             )

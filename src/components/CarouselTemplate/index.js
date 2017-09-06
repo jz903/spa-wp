@@ -12,13 +12,14 @@ const CarouselTemplate = ({
     draggable
     autoplay
     autoplaySpeed="5000"
+    className="home-carousel"
   >
     {carousel.map((media, index) => (
       <div
         key={index} // eslint-disable-line
         style={{ backgroundImage: `url(${media.url})` }}
       >
-        <div className="slogan">
+        <div className="home-carousel__slogan">
           {media.title && <h1>{media.title}</h1>}
           {media.description && <h3>{media.description}</h3>}
         </div>
