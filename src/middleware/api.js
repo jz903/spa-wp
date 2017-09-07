@@ -1,5 +1,6 @@
 import { normalize } from 'normalizr'
 import { camelizeKeys } from 'humps'
+import fetch from 'isomorphic-fetch'
 
 import { API_URL } from '../constants/urls'
 import { toQueryString } from '../utils'

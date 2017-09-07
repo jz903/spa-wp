@@ -20,16 +20,26 @@ class Root extends PureComponent {
 
   componentDidMount() {
     const { store } = this.props
+    const { site } = store.getState()
 
-    store.dispatch(fetchSiteInfo())
-    store.dispatch(fetchTopMenu())
-      .then(({ response }) => {
-        if (response) {
-          this.setState({
-            topMenu: response,
-          })
-        }
+    if (!site.name) {
+      store.dispatch(fetchSiteInfo())
+    }
+
+    if (site.topMenu.length === 0) {
+      store.dispatch(fetchTopMenu())
+        .then(({ response }) => {
+          if (response) {
+            this.setState({
+              topMenu: response,
+            })
+          }
+        })
+    } else {
+      this.setState({ // eslint-disable-line
+        topMenu: site.topMenu,
       })
+    }
   }
 
   render() {

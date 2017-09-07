@@ -9,6 +9,7 @@ class Home extends PureComponent {
   static propTypes = {
     pageId: number,
     posts: object.isRequired,
+    page: object.isRequired,
     homeCarousel: array.isRequired,
     pageSection: array.isRequired,
     fetchSinglePage: func.isRequired,
@@ -20,9 +21,9 @@ class Home extends PureComponent {
   }
 
   componentDidMount() {
-    const { pageId, fetchSinglePage, fetchPosts } = this.props
+    const { pageId, page, fetchSinglePage, fetchPosts } = this.props
 
-    if (pageId) {
+    if (pageId && Object.keys(page).length === 0) {
       fetchSinglePage(pageId)
     }
     fetchPosts()

@@ -11,9 +11,11 @@ class PageTemplate extends PureComponent {
   }
 
   componentDidMount() {
-    const { pageId, fetchSinglePage } = this.props
+    const { pageId, page, fetchSinglePage } = this.props
 
-    fetchSinglePage(pageId)
+    if (Object.keys(page).length === 0) {
+      fetchSinglePage(pageId)
+    }
   }
 
   render() {

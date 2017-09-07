@@ -8,6 +8,7 @@ import api from '../middleware/api'
 const isBrowser = (typeof window !== 'undefined')
 const composeEnhancers = (isBrowser && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose
 const isDev = process.env.NODE_ENV === 'development'
+const preloadedState = isBrowser ? window.__PRELOADED_STATE__ : {}
 const middlewares = [thunk, api]
 
 if (isDev) {
@@ -17,6 +18,7 @@ if (isDev) {
 const configureStore = history => {
   const store = createStore(
     rootReducer,
+    preloadedState,
     composeEnhancers(
       applyMiddleware(routerMiddleware(history), ...middlewares),
     ),
