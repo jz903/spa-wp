@@ -5,15 +5,20 @@ import { createLogger } from 'redux-logger'
 import rootReducer from '../reducers'
 import api from '../middleware/api'
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const isBrowser = (typeof window !== 'undefined')
+const composeEnhancers = (isBrowser && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose
 const isDev = process.env.NODE_ENV === 'development'
-const loggerMiddleware = isDev ? [createLogger()] : []
+const middlewares = [thunk, api]
+
+if (isDev) {
+  middlewares.push(createLogger())
+}
 
 const configureStore = history => {
   const store = createStore(
     rootReducer,
     composeEnhancers(
-      applyMiddleware(routerMiddleware(history), thunk, api, ...loggerMiddleware),
+      applyMiddleware(routerMiddleware(history), ...middlewares),
     ),
   )
 

@@ -29,6 +29,7 @@
     "reselect": "^3.0.1"
   },
   "devDependencies": {
+    "babel-plugin-css-modules-transform": "^1.2.7",
     "babel-plugin-import": "^1.4.0",
     "enzyme": "^2.9.1",
     "eslint": "^4.5.0",
@@ -44,7 +45,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "start:server": "nodemon --watch server --exec babel-node server",
+    "start:server": "nodemon --watch server --exec babel-node server --plugins css-modules-transform",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
     "test-all": "CI=true npm run test",

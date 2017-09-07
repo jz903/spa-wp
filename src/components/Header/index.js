@@ -17,7 +17,7 @@ class HeaderComp extends PureComponent {
   render() {
     const { site, router } = this.props
     const { topMenu } = site
-    const selectedKeys = [router.location.pathname.split('/')[1]]
+    const selectedKeys = [router.location && router.location.pathname.split('/')[1]]
 
     return (
       <Header className="app-header">

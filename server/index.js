@@ -2,28 +2,34 @@ import path from 'path'
 import fs from 'fs'
 import express from 'express'
 import React from 'react'
-import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { renderToString } from 'react-dom/server'
+import { StaticRouter } from 'react-router-dom'
 
-import appReducer from './common/reducers'
-import App from './common/containers/App'
+import configureStore from '../src/store/configureStore'
+import App from '../src/containers/App'
 
 const app = express()
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 8080
 
 // Serve static files
-app.use('/static', express.static('static'))
+app.use('/static', express.static('build/static'))
 
 // We are going to fill these out in the sections to follow
 function handleRender(req, res) {
+  const context = {}
   // Create a new Redux store instance
-  const store = createStore(appReducer)
+  const store = configureStore()
 
   // Render the component to a string
   const html = renderToString(
     <Provider store={store}>
-      <App />
+      <StaticRouter
+        location={req.url}
+        context={context}
+      >
+        <App topMenu={[]} />
+      </StaticRouter>
     </Provider>,
   )
 
