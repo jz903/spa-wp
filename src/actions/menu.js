@@ -5,7 +5,7 @@ import { API_ROUTES } from '../constants/urls'
 export const fetchTopMenu = (options = {}) => ({ // eslint-disable-line
   [CALL_API]: {
     type: actionTypes.FETCH_TOP_MENU,
-    endpoint: `${API_ROUTES.menu}/menu-locations/top`,
+    endpoint: `${API_ROUTES.menu}/menu-locations/primary`,
     options: {
       ...options,
     },
