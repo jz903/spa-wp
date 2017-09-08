@@ -13,6 +13,7 @@
     "express": "^4.15.4",
     "history": "^4.7.2",
     "humps": "^2.0.1",
+    "ignore-styles": "^5.0.1",
     "isomorphic-fetch": "^2.2.1",
     "lint-staged": "^4.0.4",
     "normalizr": "^3.2.3",
@@ -30,7 +31,6 @@
     "reselect": "^3.0.1"
   },
   "devDependencies": {
-    "babel-plugin-css-modules-transform": "^1.2.7",
     "babel-plugin-import": "^1.4.0",
     "enzyme": "^2.9.1",
     "eslint": "^4.5.0",
@@ -46,13 +46,13 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "start:server": "nodemon --watch server --exec babel-node server --plugins css-modules-transform",
+    "start:server": "nodemon --watch server --exec node server",
+    "server": "NODE_ENV=production node server",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
     "test-all": "CI=true npm run test",
     "eject": "react-app-rewired eject",
     "lint": "eslint src; exit 0",
-    "prepush": "npm run lint && npm run test-all",
-    "postinstall": "npm run build"
+    "prepush": "npm run lint && npm run test-all"
   }
 }
