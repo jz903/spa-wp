@@ -2,19 +2,14 @@
 
 exports[`Home component should render right thing and don't change unexpected 1`] = `
 <div
-  className="App container"
+  className="app-home"
 >
   <div
-    className="App-header"
+    className="app-home__content"
   >
-    <img
-      alt="logo"
-      className="App-logo"
-      src="logo.svg"
-    />
-    <h2>
-      Welcome to WP SPA
-    </h2>
+    <div>
+      There is no posts yet.
+    </div>
   </div>
 </div>
 `;
