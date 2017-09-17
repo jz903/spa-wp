@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { number, object, func } from 'prop-types'
 
+import BlogPage from '../../containers/BlogPage'
 import './index.css'
 
 class PageTemplate extends PureComponent {
@@ -22,7 +23,7 @@ class PageTemplate extends PureComponent {
 
   render() {
     const { page } = this.props
-    const { title, content, betterFeaturedImage } = page
+    const { title, slug, content, betterFeaturedImage } = page
     const { sourceUrl, altText } = betterFeaturedImage || {}
 
     return (
@@ -33,6 +34,7 @@ class PageTemplate extends PureComponent {
           className="app-page__content"
           dangerouslySetInnerHTML={{ __html: content && content.rendered }} // eslint-disable-line
         />
+        {slug === 'blog' && <BlogPage />}
       </div>
     )
   }

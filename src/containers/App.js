@@ -45,7 +45,7 @@ const App = ({
       <Content>
         <Switch>
           {pageRoutes}
-          <Route component={NoMatch} />
+          {topMenu.length > 0 && <Route component={NoMatch} />}
         </Switch>
       </Content>
       <Footer />
