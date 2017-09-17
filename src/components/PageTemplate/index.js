@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import { number, object, func } from 'prop-types'
 
 import BlogPage from '../../containers/BlogPage'
+import { isBrowser } from '../../utils'
 import './index.css'
 
 class PageTemplate extends PureComponent {
@@ -18,7 +19,9 @@ class PageTemplate extends PureComponent {
       fetchSinglePage(pageId)
     }
 
-    document.body.scrollTop = 0
+    if (isBrowser) {
+      window.document.body.scrollTop = 0
+    }
   }
 
   render() {

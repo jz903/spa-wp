@@ -24,6 +24,7 @@ class HeaderComp extends PureComponent {
   render() {
     const { site, router } = this.props
     const { topMenu, topMenuVisible } = site
+    const selectedKeys = [router.location && router.location.pathname.split('/')[1]]
 
     return (
       <Header className="app-header">
@@ -46,7 +47,7 @@ class HeaderComp extends PureComponent {
                   <TopNavMenu
                     mode="inline"
                     topMenu={topMenu}
-                    pathname={router.location && router.location.pathname}
+                    selectedKeys={selectedKeys}
                   />
                 }
               >
@@ -60,7 +61,7 @@ class HeaderComp extends PureComponent {
               <TopNavMenu
                 mode="horizontal"
                 topMenu={topMenu}
-                pathname={router.location && router.location.pathname}
+                selectedKeys={selectedKeys}
               />
             </Col>
           </Row>

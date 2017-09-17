@@ -4,8 +4,8 @@ import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import rootReducer from '../reducers'
 import api from '../middleware/api'
+import { isBrowser } from '../utils'
 
-const isBrowser = (typeof window !== 'undefined')
 const composeEnhancers = (isBrowser && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose
 const isDev = process.env.NODE_ENV === 'development'
 const preloadedState = isBrowser ? window.__PRELOADED_STATE__ : {}

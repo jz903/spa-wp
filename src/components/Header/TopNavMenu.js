@@ -10,77 +10,76 @@ import './TopNavMenu.css'
 const TopNavMenu = ({
   mode,
   topMenu,
-  pathname,
-}) => {
-  const selectedKeys = [pathname.split('/')[1]]
+  selectedKeys,
+}) => (
+  <div className="app-header__right">
+    <div className="app-header__login">
+      <Link to="/login">Log in</Link>
+      <Link to="/register">Sign up</Link>
+    </div>
+    <Menu
+      mode={mode}
+      selectedKeys={selectedKeys}
+    >
+      {topMenu.length > 0 && topMenu.map(menu => {
+        const hasSubMenu = menu.children.length > 0
 
-  return (
-    <div className="app-header__right">
-      <div className="app-header__login">
-        <Link to="/login">Log in</Link>
-        <Link to="/register">Sign up</Link>
-      </div>
-      <Menu
-        mode={mode}
-        selectedKeys={selectedKeys}
-        onSelect={this.handleFilterChange}
-      >
-        {topMenu.length > 0 && topMenu.map(menu => {
-          const hasSubMenu = menu.children.length > 0
-
-          if (hasSubMenu) {
-            const hasThridLevel = menu.children.some(subMenu => subMenu.children.length > 0)
-            const classname = classNames({
-              'app-header__horizontal-sub': hasThridLevel,
-            })
-
-            return (
-              <Menu.SubMenu
-                key={menu.id}
-                title={menu.title}
-                className={classname}
-              >
-                {menu.children.map(subMenu => {
-                  if (subMenu.children.length > 0) {
-                    return (
-                      <Menu.ItemGroup
-                        key={subMenu.id}
-                        title={subMenu.title}
-                      >
-                        {subMenu.children.map(thirdMenu => (
-                          <Menu.Item key={getSlugFromUrl(thirdMenu.url)}>
-                            <Link to={`/${getSlugFromUrl(thirdMenu.url)}`}>{thirdMenu.title}</Link>
-                          </Menu.Item>
-                        ))}
-                      </Menu.ItemGroup>
-                    )
-                  }
-
-                  return (
-                    <Menu.Item key={getSlugFromUrl(subMenu.url)}>
-                      <Link to={`/${getSlugFromUrl(subMenu.url)}`}>{subMenu.title}</Link>
-                    </Menu.Item>
-                  )
-                })}
-              </Menu.SubMenu>
-            )
-          }
+        if (hasSubMenu) {
+          const hasThridLevel = menu.children.some(subMenu => subMenu.children.length > 0)
+          const classname = classNames({
+            'app-header__horizontal-sub': hasThridLevel,
+          })
 
           return (
-            <Menu.Item key={getSlugFromUrl(menu.url)}>
-              <Link to={`/${getSlugFromUrl(menu.url)}`}>{menu.title}</Link>
-            </Menu.Item>
+            <Menu.SubMenu
+              key={menu.id}
+              title={menu.title}
+              className={classname}
+            >
+              {menu.children.map(subMenu => {
+                if (subMenu.children.length > 0) {
+                  return (
+                    <Menu.ItemGroup
+                      key={subMenu.id}
+                      title={subMenu.title}
+                    >
+                      {subMenu.children.map(thirdMenu => (
+                        <Menu.Item key={getSlugFromUrl(thirdMenu.url)}>
+                          <Link to={`/${getSlugFromUrl(thirdMenu.url)}`}>{thirdMenu.title}</Link>
+                        </Menu.Item>
+                      ))}
+                    </Menu.ItemGroup>
+                  )
+                }
+
+                return (
+                  <Menu.Item key={getSlugFromUrl(subMenu.url)}>
+                    <Link to={`/${getSlugFromUrl(subMenu.url)}`}>{subMenu.title}</Link>
+                  </Menu.Item>
+                )
+              })}
+            </Menu.SubMenu>
           )
-        })}
-      </Menu>
-    </div>
-  )
-}
+        }
+
+        return (
+          <Menu.Item key={getSlugFromUrl(menu.url)}>
+            <Link to={`/${getSlugFromUrl(menu.url)}`}>{menu.title}</Link>
+          </Menu.Item>
+        )
+      })}
+    </Menu>
+  </div>
+)
 
 TopNavMenu.propTypes = {
   mode: string.isRequired,
-  pathname: string.isRequired,
   topMenu: array.isRequired,
+  selectedKeys: array,
+}
+
+TopNavMenu.defaultProps = {
+  selectedKeys: ['/'],
 }
 
 export default TopNavMenu

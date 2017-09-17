@@ -1,3 +1,4 @@
+export const isBrowser = (typeof window !== 'undefined')
 export const toQueryString = paramsObj =>
   Object
     .keys(paramsObj)

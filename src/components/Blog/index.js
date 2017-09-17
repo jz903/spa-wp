@@ -24,7 +24,7 @@ class Blog extends PureComponent {
 
     return (
       <div className="container">
-        {router.location.pathname === '/blog' && <ul className="app-blog__list">
+        {(router.location && router.location.pathname === '/blog') && <ul className="app-blog__list">
           {isEmpty ? 'No posts yet.'
             : postsIds.map(key => (
               <PostListItem key={key} post={posts[key]} />
@@ -41,7 +41,7 @@ class Blog extends PureComponent {
                 return <NoMatch />
               }
 
-              return <PostDetail post={posts[match.params.id]} />
+              return <PostDetail post={post} />
             }}
           />
         </Switch>
