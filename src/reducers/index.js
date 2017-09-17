@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
 import { message } from 'antd'
+import { merge } from 'lodash'
 
-import { FETCH_SITE_INFO, FETCH_TOP_MENU } from '../constants/actionTypes'
+import { FETCH_SITE_INFO, FETCH_TOP_MENU, UPDATE_TOP_MENU_VISIBLE } from '../constants/actionTypes'
 
 // Updates an entity cache in response to any action with response.entities.
 const entities = (state = {
@@ -11,10 +12,7 @@ const entities = (state = {
   media: {},
 }, action) => {
   if (action.response && action.response.entities) {
-    return {
-      ...state,
-      ...action.response.entities,
-    }
+    return merge({}, state, action.response.entities)
   }
 
   return state
@@ -24,7 +22,7 @@ const site = (
   state = {
     topMenu: [],
   },
-  { type, response = {} },
+  { type, response = {}, visible },
 ) => {
   const { name, description, url, home } = response
 
@@ -41,6 +39,11 @@ const site = (
       return {
         ...state,
         topMenu: response,
+      }
+    case UPDATE_TOP_MENU_VISIBLE:
+      return {
+        ...state,
+        topMenuVisible: visible,
       }
     default:
       return state

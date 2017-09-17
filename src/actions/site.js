@@ -10,6 +10,7 @@ export const fetchSiteInfo = () => ({
   },
 })
 
-export default {
-  fetchSiteInfo,
-}
+export const updateTopMenuVisible = visible => ({
+  type: actionTypes.UPDATE_TOP_MENU_VISIBLE,
+  visible,
+})

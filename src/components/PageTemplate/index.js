@@ -16,6 +16,8 @@ class PageTemplate extends PureComponent {
     if (Object.keys(page).length === 0) {
       fetchSinglePage(pageId)
     }
+
+    document.body.scrollTop = 0
   }
 
   render() {
