@@ -8,12 +8,10 @@ import './index.css'
 class Home extends PureComponent {
   static propTypes = {
     pageId: number,
-    posts: object.isRequired,
     page: object.isRequired,
     homeCarousel: array.isRequired,
     pageSection: array.isRequired,
     fetchSinglePage: func.isRequired,
-    fetchPosts: func.isRequired,
   }
 
   static defaultProps = {
@@ -21,17 +19,15 @@ class Home extends PureComponent {
   }
 
   componentDidMount() {
-    const { pageId, page, fetchSinglePage, fetchPosts } = this.props
+    const { pageId, page, fetchSinglePage } = this.props
 
     if (pageId && Object.keys(page).length === 0) {
       fetchSinglePage(pageId)
     }
-    fetchPosts()
   }
 
   render() {
-    const { posts, pageSection, homeCarousel } = this.props
-    const isEmpty = Object.keys(posts).length === 0
+    const { pageSection, homeCarousel } = this.props
 
     return (
       <div className="app-home">
@@ -46,9 +42,6 @@ class Home extends PureComponent {
               />),
             )
           }
-          <div>
-            {isEmpty && 'There is no posts yet.'}
-          </div>
         </div>
       </div>
     )

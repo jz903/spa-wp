@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react'
 import { number, object, func } from 'prop-types'
 
+import BlogPage from '../../containers/BlogPage'
+import { isBrowser } from '../../utils'
 import './index.css'
 
 class PageTemplate extends PureComponent {
@@ -16,11 +18,15 @@ class PageTemplate extends PureComponent {
     if (Object.keys(page).length === 0) {
       fetchSinglePage(pageId)
     }
+
+    if (isBrowser) {
+      window.document.body.scrollTop = 0
+    }
   }
 
   render() {
     const { page } = this.props
-    const { title, content, betterFeaturedImage } = page
+    const { title, slug, content, betterFeaturedImage } = page
     const { sourceUrl, altText } = betterFeaturedImage || {}
 
     return (
@@ -31,6 +37,7 @@ class PageTemplate extends PureComponent {
           className="app-page__content"
           dangerouslySetInnerHTML={{ __html: content && content.rendered }} // eslint-disable-line
         />
+        {slug === 'blog' && <BlogPage />}
       </div>
     )
   }

@@ -3,7 +3,7 @@ import { object } from 'prop-types'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
 
-import { fetchSiteInfo } from '../actions/site'
+import { fetchSiteInfo, updateTopMenuVisible } from '../actions/site'
 import { fetchTopMenu } from '../actions/menu'
 import App from './App'
 
@@ -45,6 +45,12 @@ class Root extends PureComponent {
   render() {
     const { store, history } = this.props
     const { topMenu } = this.state
+
+    // When the route changes, clear Alerts.
+    history.listen(() => {
+      // hide top menu on mobile when route changes
+      store.dispatch(updateTopMenuVisible(false))
+    })
 
     return (
       <Provider store={store}>

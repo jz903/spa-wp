@@ -1,42 +1,48 @@
 .app-header.ant-layout-header {
   width: 100%;
+  padding: 0 15px;
   position: fixed;
   z-index: 9999;
-  background-color: rgba(0, 0, 0, .8);
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
-.app-header a {
-  color: #fff;
+@media only screen and (min-width: 992px) {
+  .app-header.ant-layout-header {
+    padding: 0 50px;
+    height: 90px;
+  }
 }
 
 .app-header a:focus {
   text-decoration: none;
 }
 
-.app-header .ant-menu-dark,
-.app-header .ant-menu-dark .ant-menu-sub {
-  background-color: transparent;
+.app-header__logo {
+  text-align: center;
 }
 
-.app-header .ant-menu {
-  line-height: 4rem;
+.app-header__logo > a {
+  display: inline-block;
+  margin-top: 13px;
 }
 
-.app-header__middle .ant-menu {
-  display: flex;
-  justify-content: center;
+@media only screen and (min-width: 992px) {
+  .app-header__logo {
+    text-align: left;
+  }
+
+  .app-header__logo > a {
+    margin-top: 26px;
+  }
 }
 
-.app-header__right .ant-menu {
-  float: right;
+.app-header__title {
+  font-size: 18px;
+  line-height: 1;
 }
-
-.app-header__login {
-  float: right;
-  color: rgba(255, 255, 255, 0.67);
-  margin-top: -1px;
-}
-
-.app-header__login a {
-  color: #fff;
+.app-header__title small {
+  display: block;
+  font-weight: 200;
+  letter-spacing: 2px;
+  margin-top: 5px;
 }
