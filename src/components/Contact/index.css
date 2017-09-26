@@ -1,0 +1,18 @@
+
+.contact-form {
+  margin-top: 2em;
+}
+
+.page-contact.app-page .app-page__title {
+  width: 90%;
+}
+
+@media only screen and (min-width: 992px) {
+  .app-page.page-contact .app-page__hero {
+    height: 300px;
+  }
+
+  .page-contact .app-page__title h3 {
+    font-size: 16px;
+  }
+}

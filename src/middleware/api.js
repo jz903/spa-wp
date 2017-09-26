@@ -22,7 +22,7 @@ const callApi = ({ endpoint, method, payload, options = {} }, schema) => {
   }
 
   if (config.method === 'GET' || config.method === 'DELETE') {
-    config.body = null
+    config.body = undefined
   }
 
   return fetch(url, config)

@@ -1,0 +1,40 @@
+.app-blog__date {
+  color: #a9a9a9;
+}
+
+.app-blog__date > span {
+  margin-right: .5em;
+}
+
+.app-blog__list > li {
+  margin-bottom: 3em;
+}
+
+.app-blog__excerpt {
+  margin: 20px 0;
+}
+
+.app-blog__detail {
+  margin: 0 0 4em;
+}
+
+.app-blog__detail > h1 {
+  margin: 1em 0 0;
+}
+
+.app-blog__content p {
+  margin-top: 2em;
+}
+
+.app-blog__content p img {
+  display: block;
+  margin: 0 auto;
+}
+
+.app-blog__breadcrumb {
+  margin: 4em 0 2em;
+}
+
+.app-blog__breadcrumb > span:last-child {
+  font-weight: 400;
+}

@@ -8,7 +8,7 @@ import Footer from '../components/Footer'
 import Loading from './Loading'
 import Home from './HomePage'
 import PageTemplate from './PageTemplate'
-import NoMatch from '../components/NoMatch'
+import NoMatch from './NoMatch'
 import { getSlugFromUrl } from '../utils'
 
 const { Content } = Layout
