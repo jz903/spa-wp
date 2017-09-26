@@ -71,7 +71,7 @@ function handleRender(req, res) {
 
       const pageId = currentMenu && currentMenu.objectId
 
-      return store.dispatch(fetchSinglePage(pageId))
+      return pageId && store.dispatch(fetchSinglePage(pageId))
     })
     .then(() => {
       renderHtml()

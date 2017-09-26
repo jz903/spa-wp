@@ -16,3 +16,6 @@ export const FETCH_SINGLE_MEDIA = 'FETCH_SINGLE_MEDIA'
 // menu
 export const FETCH_TOP_MENU = 'FETCH_TOP_MENU'
 export const UPDATE_TOP_MENU_VISIBLE = 'UPDATE_TOP_MENU_VISIBLE'
+
+// comment
+export const SUBMIT_COMMENT = 'SUBMIT_COMMENT'

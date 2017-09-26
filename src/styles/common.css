@@ -26,3 +26,7 @@ img {
 .ant-layout-content {
   position: relative;
 }
+
+.link-more {
+  display: none;
+}

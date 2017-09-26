@@ -6,6 +6,8 @@ import PostDetail from './PostDetail'
 import PostListItem from './PostListItem'
 import NoMatch from '../NoMatch'
 
+import './index.css'
+
 class Blog extends PureComponent {
   static propTypes = {
     router: object.isRequired,
