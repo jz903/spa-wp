@@ -1,9 +1,19 @@
 import React, { PureComponent } from 'react'
 import { number, object, array, func } from 'prop-types'
+import Loadable from 'react-loadable'
 
-import CarouselTemplate from '../CarouselTemplate'
-import SectionTemplate from '../SectionTemplate'
+import Loading from '../Loading'
 import './index.css'
+
+const CarouselTemplate = Loadable({
+  loader: () => import('../CarouselTemplate'),
+  loading: Loading,
+})
+
+const SectionTemplate = Loadable({
+  loader: () => import('../SectionTemplate'),
+  loading: Loading,
+})
 
 class Home extends PureComponent {
   static propTypes = {

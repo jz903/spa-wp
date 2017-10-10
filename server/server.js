@@ -5,6 +5,7 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { renderToString } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
+import Loadable from 'react-loadable'
 
 import configureStore from '../src/store/configureStore'
 import App from '../src/containers/App'
@@ -86,6 +87,8 @@ function handleRender(req, res) {
 // This is fired every time the server side receives a request
 app.use(handleRender)
 
-app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}!`)
+Loadable.preloadAll().then(() => {
+  app.listen(PORT, () => {
+    console.log(`App listening on port ${PORT}!`)
+  })
 })

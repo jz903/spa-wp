@@ -1,25 +1,6 @@
-import React from 'react'
-import { bool } from 'prop-types'
 import { connect } from 'react-redux'
-import { Spin } from 'antd'
 
-import './Loading.css'
-
-const Loading = ({
-  isLoading,
-}) => isLoading && (
-  <div className="loading">
-    <Spin tip="Loading..." />
-  </div>
-)
-
-Loading.propTypes = {
-  isLoading: bool,
-}
-
-Loading.defaultProps = {
-  isLoading: false,
-}
+import Loading from '../components/Loading'
 
 const mapStateToProps = state => ({
   isLoading: state.system.isLoading,

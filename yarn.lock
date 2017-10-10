@@ -657,6 +657,14 @@ babel-plugin-dynamic-import-node@1.0.2:
     babel-template "^6.24.1"
     babel-types "^6.24.1"
 
+babel-plugin-dynamic-import-node@^1.1.0:
+  version "1.1.0"
+  resolved "http://registry.npm.taobao.org/babel-plugin-dynamic-import-node/download/babel-plugin-dynamic-import-node-1.1.0.tgz#bd1d88ac7aaf98df4917c384373b04d971a2b37a"
+  dependencies:
+    babel-plugin-syntax-dynamic-import "^6.18.0"
+    babel-template "^6.26.0"
+    babel-types "^6.26.0"
+
 babel-plugin-import@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-import/-/babel-plugin-import-1.4.0.tgz#a9999d9a79fc52a03c17ccfbbeb804038590503f"
@@ -4765,11 +4773,7 @@ lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
 
-"lodash@>=3.5 <5", lodash@^4.0.0, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.16.5, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0:
-  version "4.17.4"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
-
-lodash@^4.17.4:
+"lodash@>=3.5 <5", lodash@^4.0.0, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.16.5, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0:
   version "4.17.4"
   resolved "http://registry.npm.taobao.org/lodash/download/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -6444,6 +6448,10 @@ react-lazy-load@^3.0.10:
     lodash.debounce "^4.0.0"
     lodash.throttle "^4.0.0"
     prop-types "^15.5.8"
+
+react-loadable@^5.1.0:
+  version "5.1.0"
+  resolved "http://registry.npm.taobao.org/react-loadable/download/react-loadable-5.1.0.tgz#91c5f8015982bca42bf79b8e61c7b78014792324"
 
 react-redux@^5.0.6:
   version "5.0.6"

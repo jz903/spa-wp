@@ -56,7 +56,7 @@ const system = (
   },
   action,
 ) => {
-  const { suppressError, error, success, isLoading } = action
+  const { suppressError, error, success, isLoading = false } = action
 
   if (error && !suppressError) {
     message.error(error)
