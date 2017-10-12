@@ -11,15 +11,15 @@ import AsyncCompLoading from '../components/Loading'
 import { getSlugFromUrl } from '../utils'
 
 const Home = Loadable({
-  loader: () => import('./HomePage'),
+  loader: () => import(/* webpackChunkName: "homepage" */ './HomePage'),
   loading: AsyncCompLoading,
 })
 const PageTemplate = Loadable({
-  loader: () => import('./PageTemplate'),
+  loader: () => import(/* webpackChunkName: "page" */ './PageTemplate'),
   loading: AsyncCompLoading,
 })
 const NoMatch = Loadable({
-  loader: () => import('./NoMatch'),
+  loader: () => import(/* webpackChunkName: "no-match" */ './NoMatch'),
   loading: AsyncCompLoading,
 })
 

@@ -7,12 +7,12 @@ import { isBrowser } from '../../utils'
 import './index.css'
 
 const BlogPage = Loadable({
-  loader: () => import('../../containers/BlogPage'),
+  loader: () => import(/* webpackChunkName: "blog" */ '../../containers/BlogPage'),
   loading: Loading,
 })
 
 const ContactPage = Loadable({
-  loader: () => import('../../containers/ContactPage'),
+  loader: () => import(/* webpackChunkName: "contact" */ '../../containers/ContactPage'),
   loading: Loading,
 })
 
