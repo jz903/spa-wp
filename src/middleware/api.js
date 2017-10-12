@@ -38,9 +38,20 @@ const callApi = ({ endpoint, method, payload, options = {} }, schema) => {
           (key, convert) => (/^[A-Z0-9_]+$/.test(key) ? key.toLowerCase() : convert(key)),
         )
 
+        const total = response.headers.get('X-WP-Total')
+        const pages = response.headers.get('X-WP-TotalPages')
+
         return schema ? {
-          ...normalize(camelizedJson, schema),
-        } : camelizedJson
+          meta: {
+            total,
+            pages,
+          },
+          data: {
+            ...normalize(camelizedJson, schema),
+          },
+        } : {
+          data: camelizedJson,
+        }
       }),
     )
 }
@@ -89,15 +100,16 @@ export default store => next => action => {
 
   return callApi(callAPI, schema).then(
     response => next(actionWith({
-      response,
+      response: response.data,
       type: successType,
+      meta: response.meta,
       success: response.success,
       isLoading: false,
     })),
     error => next(actionWith({
       suppressError,
       type: failureType,
-      error: error.error || 'Something bad happened',
+      error: error.message || 'Something bad happened',
       isLoading: false,
     })),
   )

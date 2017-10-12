@@ -2,14 +2,27 @@ import React from 'react'
 import { array } from 'prop-types'
 import { Switch, Route } from 'react-router-dom'
 import { Layout } from 'antd'
+import Loadable from 'react-loadable'
 
 import Header from './Header'
 import Footer from '../components/Footer'
 import Loading from './Loading'
-import Home from './HomePage'
-import PageTemplate from './PageTemplate'
-import NoMatch from './NoMatch'
+import AsyncCompLoading from '../components/Loading'
 import { getSlugFromUrl } from '../utils'
+
+const Home = Loadable({
+  loader: () => import(/* webpackChunkName: "homepage" */ './HomePage'),
+  loading: AsyncCompLoading,
+})
+const PageTemplate = Loadable({
+  loader: () => import(/* webpackChunkName: "page" */ './PageTemplate'),
+  loading: AsyncCompLoading,
+})
+const NoMatch = Loadable({
+  loader: () => import(/* webpackChunkName: "no-match" */ './NoMatch'),
+  loading: AsyncCompLoading,
+})
+
 
 const { Content } = Layout
 

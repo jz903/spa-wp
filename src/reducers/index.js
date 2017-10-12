@@ -3,16 +3,29 @@ import { routerReducer } from 'react-router-redux'
 import { message } from 'antd'
 import { merge } from 'lodash'
 
-import { FETCH_SITE_INFO, FETCH_TOP_MENU, UPDATE_TOP_MENU_VISIBLE } from '../constants/actionTypes'
+import { FETCH_SITE_INFO, FETCH_TOP_MENU, UPDATE_TOP_MENU_VISIBLE, FETCH_POSTS } from '../constants/actionTypes'
 
 // Updates an entity cache in response to any action with response.entities.
 const entities = (state = {
   pages: {},
+  pagesIds: [],
   posts: {},
+  postsIds: [],
   media: {},
+  mediaIds: [],
 }, action) => {
   if (action.response && action.response.entities) {
-    return merge({}, state, action.response.entities)
+    const { entities: data, result } = action.response
+    const keys = Object.keys(data)
+
+    return merge(
+      {},
+      state,
+      data,
+      {
+        [`${keys[0]}Ids`]: result,
+      },
+    )
   }
 
   return state
@@ -21,8 +34,13 @@ const entities = (state = {
 const site = (
   state = {
     topMenu: [],
+    postsMeta: {
+      current: 1,
+      total: 0,
+      pages: 0,
+    },
   },
-  { type, response = {}, visible },
+  { type, response = {}, meta, visible },
 ) => {
   const { name, description, url, home } = response
 
@@ -34,6 +52,15 @@ const site = (
         description,
         url,
         home,
+      }
+    case `${FETCH_POSTS}_SUCCESS`:
+      return {
+        ...state,
+        postsMeta: {
+          ...state.postsMeta,
+          total: +meta.total,
+          pages: +meta.pages,
+        },
       }
     case `${FETCH_TOP_MENU}_SUCCESS`:
       return {
@@ -56,7 +83,7 @@ const system = (
   },
   action,
 ) => {
-  const { suppressError, error, success, isLoading } = action
+  const { suppressError, error, success, isLoading = false } = action
 
   if (error && !suppressError) {
     message.error(error)

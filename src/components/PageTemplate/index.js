@@ -1,10 +1,21 @@
 import React, { PureComponent } from 'react'
 import { number, object, func } from 'prop-types'
+import Loadable from 'react-loadable'
 
-import BlogPage from '../../containers/BlogPage'
-import ContactPage from '../../containers/ContactPage'
+import Loading from '../Loading'
 import { isBrowser } from '../../utils'
 import './index.css'
+
+const BlogPage = Loadable({
+  loader: () => import(/* webpackChunkName: "blog" */ '../../containers/BlogPage'),
+  loading: Loading,
+})
+
+const ContactPage = Loadable({
+  loader: () => import(/* webpackChunkName: "contact" */ '../../containers/ContactPage'),
+  loading: Loading,
+})
+
 
 class PageTemplate extends PureComponent {
   static propTypes = {

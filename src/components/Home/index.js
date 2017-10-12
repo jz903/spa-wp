@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { number, object, array, func } from 'prop-types'
 
-import CarouselTemplate from '../CarouselTemplate'
+import CarouselTemplate from './CarouselTemplate'
 import SectionTemplate from '../SectionTemplate'
 import './index.css'
 

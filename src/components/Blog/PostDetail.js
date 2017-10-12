@@ -10,7 +10,7 @@ const PostDetail = ({
   post,
 }) => (
   <div className="app-blog__detail">
-    <Breadcrumb className="app-news__breadcrumb">
+    <Breadcrumb className="app-blog__breadcrumb">
       <Breadcrumb.Item><Link to="/" >Home</Link></Breadcrumb.Item>
       <Breadcrumb.Item><Link to="/blog" >Blog</Link></Breadcrumb.Item>
       <Breadcrumb.Item>{post.title && post.title.rendered}</Breadcrumb.Item>

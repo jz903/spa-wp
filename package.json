@@ -25,6 +25,7 @@
     "react-app-rewire-less": "^2.0.7",
     "react-app-rewired": "^1.2.5",
     "react-dom": "^15.6.1",
+    "react-loadable": "^5.1.0",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
@@ -36,6 +37,8 @@
     "reselect": "^3.0.1"
   },
   "devDependencies": {
+    "babel-plugin-dynamic-import-node": "^1.1.0",
+    "babel-plugin-import": "^1.4.0",
     "enzyme": "^2.9.1",
     "eslint": "^4.5.0",
     "eslint-config-airbnb": "^15.1.0",
@@ -56,6 +59,7 @@
     "eject": "react-app-rewired eject",
     "lint": "eslint src; exit 0",
     "prepush": "npm run lint && npm run test-all",
+    "prestart:server": "npm run build",
     "postinstall": "npm run build"
   }
 }
