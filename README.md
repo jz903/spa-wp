@@ -29,7 +29,7 @@
 
 3. Next, you should create config `.env` files:
   ```
-  WP_URL='Place here your wordpress website link like `http://localhost:8888`'
+  REACT_APP_WP_URL='Place here your wordpress website link like `http://localhost:8888`'
   ``` 
 
 5. Next, you can run application:  
