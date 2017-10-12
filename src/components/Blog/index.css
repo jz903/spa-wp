@@ -38,3 +38,7 @@
 .app-blog__breadcrumb > span:last-child {
   font-weight: 400;
 }
+
+.app-blog__pagination {
+  margin: 2em 0 4em;
+}

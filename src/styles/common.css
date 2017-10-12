@@ -25,6 +25,7 @@ img {
 
 .ant-layout-content {
   position: relative;
+  margin-top: 90px;
 }
 
 .link-more {

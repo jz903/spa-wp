@@ -5,6 +5,8 @@ import { fetchPosts } from '../actions/post'
 
 const mapStateToProps = state => ({
   posts: state.entities.posts,
+  postsIds: state.entities.postsIds,
+  postsMeta: state.site.postsMeta,
   router: state.router,
 })
 

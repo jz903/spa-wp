@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react'
-import { object, func } from 'prop-types'
+import { array, object, func } from 'prop-types'
 import { Switch, Route } from 'react-router-dom'
 
+import PostList from './PostList'
 import PostDetail from './PostDetail'
-import PostListItem from './PostListItem'
 import NoMatch from '../NoMatch'
 
 import './index.css'
@@ -12,6 +12,8 @@ class Blog extends PureComponent {
   static propTypes = {
     router: object.isRequired,
     posts: object.isRequired,
+    postsIds: array.isRequired,
+    postsMeta: object.isRequired,
     fetchPosts: func.isRequired,
   }
 
@@ -19,20 +21,25 @@ class Blog extends PureComponent {
     this.props.fetchPosts()
   }
 
+  handlePageChange = page => {
+    this.props.fetchPosts({
+      page,
+    })
+  }
+
   render() {
-    const { router, posts } = this.props
-    const postsIds = Object.keys(posts)
-    const isEmpty = postsIds.length === 0
+    const { router, posts, postsIds, postsMeta } = this.props
 
     return (
       <div className="container">
-        {(router.location && router.location.pathname === '/blog') && <ul className="app-blog__list">
-          {isEmpty ? 'No posts yet.'
-            : postsIds.map(key => (
-              <PostListItem key={key} post={posts[key]} />
-            ))
-          }
-        </ul>}
+        {router.location && router.location.pathname === '/blog' &&
+          <PostList
+            posts={posts}
+            postsIds={postsIds}
+            postsMeta={postsMeta}
+            handlePageChange={this.handlePageChange}
+          />
+        }
         <Switch>
           <Route
             path="/blog/:id"
