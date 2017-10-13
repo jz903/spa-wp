@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react'
 import { object } from 'prop-types'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
+import { LocaleProvider } from 'antd'
+import enUS from 'antd/lib/locale-provider/en_US'
 
 import { fetchSiteInfo, updateTopMenuVisible } from '../actions/site'
 import { fetchTopMenu } from '../actions/menu'
@@ -56,7 +58,9 @@ class Root extends PureComponent {
       <Provider store={store}>
         {/* ConnectedRouter will use the store from Provider automatically */}
         <ConnectedRouter history={history}>
-          <App topMenu={topMenu} />
+          <LocaleProvider locale={enUS}>
+            <App topMenu={topMenu} />
+          </LocaleProvider>
         </ConnectedRouter>
       </Provider>
     )

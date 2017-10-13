@@ -14,6 +14,11 @@
   margin: 20px 0;
 }
 
+.app-blog__excerpt .more-link,
+.app-blog__excerpt .link-more {
+  display: none;
+}
+
 .app-blog__detail {
   margin: 0 0 4em;
 }
