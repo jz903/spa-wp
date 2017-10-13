@@ -13,7 +13,7 @@ const PostListItem = ({
     <div
       className="app-blog__excerpt"
       dangerouslySetInnerHTML={ // eslint-disable-line
-        { __html: post.excerpt.rendered }
+        { __html: post.excerpt && post.excerpt.rendered }
       }
     />
     <p>

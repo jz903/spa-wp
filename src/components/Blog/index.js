@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom'
 
 import PostList from './PostList'
 import PostDetail from './PostDetail'
-import NoMatch from '../NoMatch'
+import NoMatch from '../../containers/NoMatch'
 
 import './index.css'
 
@@ -25,6 +25,7 @@ class Blog extends PureComponent {
     this.props.fetchPosts({
       page,
     })
+    window.document.body.scrollTop = 0
   }
 
   render() {
