@@ -3,7 +3,7 @@ import { camelizeKeys } from 'humps'
 import fetch from 'isomorphic-fetch'
 
 import { API_URL } from '../constants/urls'
-import { toQueryString } from '../utils'
+import { isBrowser, toQueryString } from '../utils'
 
 const defaultHTTPHeaders = {
   Accept: 'application/json',
@@ -13,7 +13,8 @@ const defaultHTTPHeaders = {
 // This makes every API response have the same shape, regardless of how nested it was.
 const callApi = ({ endpoint, method, payload, options = {} }, schema) => {
   const query = toQueryString(options)
-  const url = `${API_URL}${endpoint}${query ? '?' : ''}${query}`
+  const apiUrl = isBrowser ? API_URL.replace('http:', '') : API_URL
+  const url = `${apiUrl}${endpoint}${query ? '?' : ''}${query}`
   const config = {
     headers: defaultHTTPHeaders,
     method: method || 'GET',

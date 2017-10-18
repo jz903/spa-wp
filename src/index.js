@@ -4,6 +4,7 @@ import createHistory from 'history/createBrowserHistory'
 
 import Root from './containers/Root'
 import configureStore from './store/configureStore'
+import serviceWorkerRegistration from './registerServiceWorker'
 
 import './styles/common.css'
 
@@ -16,3 +17,5 @@ render(
   <Root store={store} history={history} />,
   document.getElementById('root'),
 )
+
+serviceWorkerRegistration()
