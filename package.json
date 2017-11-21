@@ -55,7 +55,7 @@
     "test": "react-app-rewired test --env=jsdom",
     "test-all": "CI=true npm run test",
     "eject": "react-app-rewired eject",
-    "lint": "eslint src; exit 0",
+    "lint": "eslint src server; exit 0",
     "prepush": "npm run lint && npm run test-all",
     "prestart:server": "npm run build",
     "postinstall": "npm run build"

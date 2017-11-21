@@ -18,6 +18,6 @@ app.use(handleRender)
 
 Loadable.preloadAll().then(() => {
   app.listen(PORT, () => {
-    console.log(`App listening on port ${PORT}!`)
+    console.log(`App listening on port ${PORT}!`) // eslint-disable-line
   })
 })

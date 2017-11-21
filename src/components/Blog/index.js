@@ -19,10 +19,11 @@ class Blog extends PureComponent {
 
   render() {
     const { router, posts, postsIds, postsMeta, fetchPosts, fetchSinglePost } = this.props
+    const isShowList = router.location && router.location.pathname === '/blog'
 
     return (
       <div className="container">
-        {router.location && router.location.pathname === '/blog' &&
+        {isShowList &&
           <PostList
             posts={posts}
             postsIds={postsIds}

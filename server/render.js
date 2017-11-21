@@ -10,13 +10,16 @@ import App from '../src/containers/App'
 import { fetchSiteInfo } from '../src/actions/site'
 import { fetchTopMenu } from '../src/actions/menu'
 import { fetchSinglePage } from '../src/actions/page'
+import { fetchSinglePost } from '../src/actions/post'
 import { getSlugFromUrl } from '../src/utils'
 
 // We are going to fill these out in the sections to follow
 export default function handleRender(req, res) {
   // Create a new Redux store instance
+  const reqPath = req.path.split('/')
   const store = configureStore()
   let topMenu = []
+  let slug = reqPath[1]
   const renderHtml = () => {
     const context = {}
     // Render the component to a string
@@ -56,7 +59,6 @@ export default function handleRender(req, res) {
     .then(() => store.dispatch(fetchTopMenu()))
     .then(({ response }) => {
       topMenu = response
-      let slug = req.path.split('/')[1]
       if (slug === '') {
         slug = 'home'
       }
@@ -65,6 +67,15 @@ export default function handleRender(req, res) {
       const pageId = currentMenu && currentMenu.objectId
 
       return pageId && store.dispatch(fetchSinglePage(pageId))
+    })
+    .then(() => {
+      const id = reqPath.slice(-1)[0]
+
+      if (slug === 'blog' && id && !isNaN(id) && id !== slug) {
+        return store.dispatch(fetchSinglePost(id))
+      }
+
+      return null
     })
     .then(() => {
       renderHtml()
