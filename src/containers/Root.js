@@ -7,6 +7,7 @@ import enUS from 'antd/lib/locale-provider/en_US'
 
 import { fetchSiteInfo, updateTopMenuVisible } from '../actions/site'
 import { fetchTopMenu } from '../actions/menu'
+import ScrollToTop from './ScrollToTop'
 import App from './App'
 
 
@@ -59,7 +60,9 @@ class Root extends PureComponent {
         {/* ConnectedRouter will use the store from Provider automatically */}
         <ConnectedRouter history={history}>
           <LocaleProvider locale={enUS}>
-            <App topMenu={topMenu} />
+            <ScrollToTop>
+              <App topMenu={topMenu} />
+            </ScrollToTop>
           </LocaleProvider>
         </ConnectedRouter>
       </Provider>

@@ -20,7 +20,6 @@ class PostList extends PureComponent {
     this.props.fetchPosts({
       page,
     })
-    window.document.body.scrollTop = 0
   }
 
   render() {

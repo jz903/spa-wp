@@ -30,10 +30,6 @@ class PageTemplate extends PureComponent {
     if (Object.keys(page).length === 0) {
       fetchSinglePage(pageId)
     }
-
-    if (isBrowser) {
-      window.document.body.scrollTop = 0
-    }
   }
 
   render() {
