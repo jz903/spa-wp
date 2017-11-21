@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
 import Blog from '../components/Blog'
-import { fetchPosts } from '../actions/post'
+import { fetchPosts, fetchSinglePost } from '../actions/post'
 
 const mapStateToProps = state => ({
   posts: state.entities.posts,
@@ -12,4 +12,5 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, {
   fetchPosts,
+  fetchSinglePost,
 })(Blog)

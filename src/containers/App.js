@@ -1,6 +1,6 @@
 import React from 'react'
 import { array } from 'prop-types'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import { Layout } from 'antd'
 import Loadable from 'react-loadable'
 
@@ -35,7 +35,7 @@ const App = ({
     if (slug === 'home') {
       return [
         <Route exact path="/" component={() => <Home pageId={menu.objectId} />} />,
-        <Route path={`/${slug}`} component={() => <Home pageId={menu.objectId} />} />,
+        <Route path="/home" render={() => <Redirect to="/" />} />,
       ]
     }
 
