@@ -48,6 +48,7 @@ const callApi = ({ endpoint, method, payload, options = {} }, schema) => {
             pages,
           },
           data: {
+            key: Array.isArray(schema) ? schema[0]._key : schema._key,
             ...normalize(camelizedJson, schema),
           },
         } : {

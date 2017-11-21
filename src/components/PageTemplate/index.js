@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import { number, object, func } from 'prop-types'
 import Loadable from 'react-loadable'
 
+import PageContent from './PageContent'
 import Loading from '../Loading'
 import { isBrowser } from '../../utils'
 import './index.css'
@@ -30,10 +31,6 @@ class PageTemplate extends PureComponent {
     if (Object.keys(page).length === 0) {
       fetchSinglePage(pageId)
     }
-
-    if (isBrowser) {
-      window.document.body.scrollTop = 0
-    }
   }
 
   render() {
@@ -55,10 +52,7 @@ class PageTemplate extends PureComponent {
             {wpsSubtitle && <h3>{wpsSubtitle}</h3>}
           </div>
         </div>
-        <div
-          className="app-page__content container"
-          dangerouslySetInnerHTML={{ __html: content && content.rendered }} // eslint-disable-line
-        />
+        {content && content.rendered && <PageContent content={content.rendered} />}
         {slug === 'blog' && <BlogPage />}
         {slug === 'contact' && <ContactPage pageId={pageId} />}
       </div>

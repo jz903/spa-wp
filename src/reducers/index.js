@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
 import { message } from 'antd'
-import { merge } from 'lodash'
 
 import { FETCH_SITE_INFO, FETCH_TOP_MENU, UPDATE_TOP_MENU_VISIBLE, FETCH_POSTS } from '../constants/actionTypes'
 
+// Updates an entity cache in response to any action with response.entities.
 // Updates an entity cache in response to any action with response.entities.
 const entities = (state = {
   pages: {},
@@ -15,17 +15,32 @@ const entities = (state = {
   mediaIds: [],
 }, action) => {
   if (action.response && action.response.entities) {
-    const { entities: data, result } = action.response
-    const keys = Object.keys(data)
+    const { result, key } = action.response
+    let data = {
+      ...action.response.entities[key],
+    }
+    let ids = [...result]
 
-    return merge(
-      {},
-      state,
-      data,
-      {
-        [`${keys[0]}Ids`]: result,
-      },
-    )
+    if (typeof result === 'number') {
+      if (ids.indexOf(result) < 0) {
+        // add new
+        ids = [result, ...state[`${key}Ids`]]
+      } else {
+        // edit
+        ids = [...state[`${key}Ids`]]
+      }
+
+      data = {
+        ...state[key],
+        ...action.response.entities[key],
+      }
+    }
+
+    return {
+      ...state,
+      [key]: data,
+      [`${key}Ids`]: ids,
+    }
   }
 
   return state

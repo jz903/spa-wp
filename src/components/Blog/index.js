@@ -4,7 +4,6 @@ import { Switch, Route } from 'react-router-dom'
 
 import PostList from './PostList'
 import PostDetail from './PostDetail'
-import NoMatch from '../../containers/NoMatch'
 
 import './index.css'
 
@@ -15,43 +14,31 @@ class Blog extends PureComponent {
     postsIds: array.isRequired,
     postsMeta: object.isRequired,
     fetchPosts: func.isRequired,
-  }
-
-  componentDidMount() {
-    this.props.fetchPosts()
-  }
-
-  handlePageChange = page => {
-    this.props.fetchPosts({
-      page,
-    })
-    window.document.body.scrollTop = 0
+    fetchSinglePost: func.isRequired,
   }
 
   render() {
-    const { router, posts, postsIds, postsMeta } = this.props
+    const { router, posts, postsIds, postsMeta, fetchPosts, fetchSinglePost } = this.props
+    const isShowList = router.location && router.location.pathname === '/blog'
 
     return (
       <div className="container">
-        {router.location && router.location.pathname === '/blog' &&
+        {isShowList &&
           <PostList
             posts={posts}
             postsIds={postsIds}
             postsMeta={postsMeta}
-            handlePageChange={this.handlePageChange}
+            fetchPosts={fetchPosts}
           />
         }
         <Switch>
           <Route
             path="/blog/:id"
-            component={({ match }) => {
-              const post = posts[match.params.id]
+            render={({ match }) => {
+              const id = match.params.id
+              const post = posts[id] || { id }
 
-              if (!post) {
-                return <NoMatch />
-              }
-
-              return <PostDetail post={post} />
+              return <PostDetail post={post} fetchSinglePost={fetchSinglePost} />
             }}
           />
         </Switch>

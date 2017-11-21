@@ -1,42 +1,54 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import { array, object, func } from 'prop-types'
 import { Pagination } from 'antd'
 
 import PostListItem from './PostListItem'
 
-const PostList = ({
-  posts,
-  postsIds,
-  postsMeta,
-  handlePageChange,
-}) => {
-  const isEmpty = postsIds.length === 0
+class PostList extends PureComponent {
+  static propTypes = {
+    posts: object.isRequired,
+    postsIds: array.isRequired,
+    postsMeta: object.isRequired,
+    fetchPosts: func.isRequired,
+  }
 
-  return (
-    <div>
-      <ul className="app-blog__list">
-        {isEmpty ? 'Blog list is empty.'
-          : postsIds
-            .map(key => (
-              <PostListItem key={key} post={posts[key]} />
-            ))
-        }
-      </ul>
-      {postsMeta.pages > 1 && <Pagination
-        className="app-blog__pagination"
-        defaultCurrent={postsMeta.current}
-        total={postsMeta.total}
-        onChange={handlePageChange}
-      />}
-    </div>
-  )
-}
+  componentDidMount() {
+    this.props.fetchPosts()
+  }
 
-PostList.propTypes = {
-  posts: object.isRequired,
-  postsIds: array.isRequired,
-  postsMeta: object.isRequired,
-  handlePageChange: func.isRequired,
+  handlePageChange = page => {
+    this.props.fetchPosts({
+      page,
+    })
+  }
+
+  render() {
+    const {
+      posts,
+      postsIds,
+      postsMeta,
+    } = this.props
+    const isEmpty = postsIds.length === 0
+
+    return (
+      <div>
+        <ul className="app-blog__list">
+          {isEmpty ? 'Blog list is empty.'
+            : postsIds
+              .map(key => (
+                <PostListItem key={key} post={posts[key]} />
+              ))
+          }
+        </ul>
+        {postsMeta.pages > 1 && <Pagination
+          className="app-blog__pagination"
+          defaultCurrent={postsMeta.current}
+          total={postsMeta.total}
+          onChange={this.handlePageChange}
+        />}
+      </div>
+    )
+  }
 }
 
 export default PostList
